@@ -1,0 +1,66 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+    
+     <!--{include file='head.tpl'}--> 
+     
+<body> 
+<!--{include file="header.html"}-->
+  
+	<div class="container">
+           
+		<div class="product">
+                   
+		<h2 class="new" >NEW ARRIVALS</h2>
+		
+                  <!--{foreach from=$groupeproducts item=$catarray}-->  
+                   
+		  		<div class="pink">
+                        <!--{foreach from=$catarray item=$value}-->  
+
+			<div class="col-md-3 box-in-at">
+                       
+			<div class=" grid_box portfolio-wrapper">
+							 <a href="/single/product/<!--{$value.id}-->">
+                                                             <img src="/views/images/products/<!--{$value.foto[0]}-->" class="img-responsive" alt="">
+                                                                <div class="zoom-icon">
+
+                                                                    <!--{$value.name}-->
+                                                            </div> 
+                                                    </a> 	
+		           </div>
+				<!---->
+						<div class="grid_1 simpleCart_shelfItem">
+							<a href="#" class="cup item_add" data-id="<!--{$value.id}-->"><span class=" item_price" ><!--{$value.price}--> <i> </i> </span></a>					
+						</div>
+					<!---->
+                                       
+				</div>
+                   <!--{/foreach}-->  
+			             
+				<div class="clearfix"> </div>
+                                  
+                           
+		</div>
+                   
+                    <!--{/foreach}-->      
+
+                    
+                    <!--{$pages}-->
+		</div>
+		<!---->	
+                
+              
+</div>
+
+  
+<!--{include file="footer.tpl"}-->
+
+<script type="text/javascript" src="/views/js/myJavaScript.js"></script>
+</body>
+</html>

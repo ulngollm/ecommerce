@@ -1,0 +1,106 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+     <!--{include file='head.tpl'}--> 
+     <script type="text/javascript" src="/views/js/myJavaScript.js"></script>
+<body> 
+<!--{include file="header.html"}-->
+  
+<!--banner-->
+<div class="container">
+	<div class="check">
+            
+			 <div class="col-md-3 cart-total">
+			 <a class="continue" href="#">Продолжить покупки</a>
+			 <div class="price-details">
+				 <h3>Товары</h3>
+				 <span>Total</span>
+				 <span class="simpleCart_total"><!--{$cost}--></span>
+				 <span>Скидка</span>
+				 <span class="total1">---</span>
+				 <span>Стоимость доставки</span>
+				 <span class="total1">0</span>
+				 <div class="clearfix"></div>				 
+			 </div>	
+			 <ul class="total_price">
+			   <li class="last_price"> <h4>ИТОГ</h4></li>	
+                           <li class="last_price"><span class="simpleCart_total"> <!--{$cost}--></span></li>
+			   <div class="clearfix"> </div>
+			 </ul>
+			
+			 
+			 <div class="clearfix"></div>
+			 <a class="order" href="#">Заказать</a>
+			 <div class="total-item">
+				 <h3>Настройки</h3>
+				 <h4>КУПОНЫ</h4>
+				 <a class="cpns" href="#">Доступные купоны</a>
+				 <p><a href="#">Войдите</a> чтобы использовать купон</p>
+			 </div>
+			</div>
+		 <div class="col-md-9 cart-items">
+			 <h1>Моя корзина</h1>
+                         <!--{foreach from=$cartinfo item=$cart}--> 
+                         
+                        
+			 <div class="cart-header">
+                                 
+                          
+				 <div class="cart-sec simpleCart_shelfItem">
+                                      <div class="close1 myclose" data-id="<!--{$cart.id}-->"> </div>
+						<div class="cart-item cyc">
+                                                   
+							 <img src="/views/images/products/<!--{$cart.path}-->" class="img-responsive" alt=""/>
+                                                          
+						</div>
+					   <div class="cart-item-info">
+						<h3>
+                                                     
+                                                     <a href="#"><!--{$cart.fullname}--> </a>
+                                                    
+                                                </h3>
+                                               
+                                              
+						<ul class="qty">
+                                                    
+							<li><p><!--{$size.name}--></p></li>
+                                                       
+                                                         <li><p><!--{$cart[0]}--> шт.</p></li>
+                                                          
+                                                            
+							<li><p><!--{$cart.price}--> рублей</p></li>
+                                                           
+                                                        
+						</ul>
+                                               
+						
+							 <div class="delivery">
+							 <p>Бесплатная доставка</p>
+							 <span>В течение 15-30 дней</span>
+							 <div class="clearfix"></div>
+				        </div>	
+					   </div>
+					   <div class="clearfix"></div>
+											
+				  </div>
+                                
+			 </div>
+                           
+			 <!--{/foreach}-->	
+		 </div>
+		 
+		
+			<div class="clearfix"> </div>
+                        
+	 </div>
+	 </div>
+
+	<!--{include file="footer.tpl"}-->
+
+</body>
+</html>

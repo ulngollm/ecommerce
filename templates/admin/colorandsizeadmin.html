@@ -1,0 +1,352 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="/views/js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="/views/js/bootstrap.min.js"></script>
+        <link href="/views/admin/css/style.css" rel="stylesheet" type="text/css">
+        <link href="/views/admin/css/checkbox.css" rel='stylesheet' type="text/css">
+        <script type="text/javascript" src="/views/js/datajs.js"></script>
+        <title>Редактирование цветов и размеров</title>
+        <script>
+            function getColor(Obj)
+            {
+                return $('<div class="colorcontainer"   data-id="' + Obj.id + '">' +
+                        '<div class="row">' +
+                        '<div class="col-md-12">' +
+                        '<form class="form-horizontal" role="form">' +
+                        '<div class="form-group" >' +
+                        '<div class="col-sm-1">' +
+                        '<label class="control-label">' + Obj.name + '</label>' +
+                        '</div>' +
+                        '<div class="col-sm-1">' +
+                        '<input type="text" class="form-control" placeholder="id" disabled value="' + Obj.id + '">' +
+                        '</div>' +
+                        '<div class="col-sm-3">' +
+                        '<input type="text" class="form-control" placeholder="Название цвета" disabled value="' + Obj.name + '">' +
+                        '</div>' +
+                        '<div class="col-sm-1">' +
+                        '<input type="text" class="form-control" placeholder="Red" disabled value="' + Obj.red + '">' +
+                        '</div>' +
+                        '<div class="col-sm-1">' +
+                        '<input type="text" class="form-control" placeholder="Green" disabled value="' + Obj.green + '">' +
+                        '</div>' +
+                        '<div class="col-sm-1">' +
+                        '<input type="text" class="form-control" placeholder="Blue" disabled value="' + Obj.blue + '">' +
+                        '</div>' +
+                        '<div class="col-sm-2">' +
+                        '<input type="text" class="form-control" placeholder="Код" disabled value="' + Obj.code + '">' +
+                        '</div>' +
+                        '<div class="col-sm-1">' +
+                        '<input type="color" class="form-control" disabled value="#' + Obj.code + '">' +
+                        '</div>' +
+                        '<div class="col-sm-1">' +
+                        '<a class="btn btn-block btn-danger mydelete">X</a>' +
+                        '</div></div></form></div></div></div>'
+                        );
+            }
+            function getSize(Obj)
+            {
+                return $('<div class="sizecontainer" data-id="' + Obj.id + '">' +
+                        '<div class="row">' +
+                        '<div class="col-md-12">' +
+                        '<form class="form-horizontal" role="form">' +
+                        '<div class="form-group">' +
+                        '<div class="col-sm-2">' +
+                        '<label class="control-label">' + Obj.name + '</label>' +
+                        '</div>' +
+                        '<div class="col-sm-2">' +
+                        '<input type="text" class="form-control" placeholder="id" disabled value="' + Obj.id + '">' +
+                        '</div>' +
+                        '<div class="col-sm-6">' +
+                        '<input type="text" class="form-control" placeholder="Название размера" disabled value="' + Obj.name + '">' +
+                        '</div>' +
+                        '<div class="col-sm-2">' +
+                        '<a class="btn btn-block btn-danger mydelete">X</a>' +
+                        '</div></div></form></div></div></div>'
+                        );
+            }
+            function getCode(mycode)
+            {
+                return mycode;
+            }
+
+            $(document).ready(function () {
+                
+                
+                $("#addcolor").click(function () {
+                    
+                    obj = new Color(0,
+                        $("#colornewname").val(),
+                            $("#colornewred").val(),
+                            $("#colornewgreen").val(),
+                            $("#colornewblue").val(),
+                            $("#colornewcode").val(),
+                            $("#colorenter").val()
+                        );
+                
+                    
+                   $.post("/admin/colorandsizecomand/addcolor", {"obj": JSON.stringify(obj)}, function (data) {
+                    result = JSON.parse(data);
+                   // 
+                    if(result.result === "Ok") 
+                    {
+                        newId = result.id;
+                        obj = new Color(newId,
+                            $("#colornewname").val(),
+                            $("#colornewred").val(),
+                            $("#colornewgreen").val(),
+                            $("#colornewblue").val(),
+                            $("#colornewcode").val(),
+                            $("#colorenter").val()
+                        );
+                        datacolor.push(obj);
+                        console.log(obj);
+                        $("#colors").find(".section").first().append(getColor(obj));
+                    }
+                });
+                });
+                
+                
+
+                
+                $("#addsize").click(function () {
+                    
+                    
+                    obj = new Size(0,
+                            $("#sizenewname").val()
+                            );
+                   
+                   $.post("/admin/colorandsizecomand/addsize", {"obj": JSON.stringify(obj)}, function (data) {
+                    result = JSON.parse(data);
+                   // 
+                    if(result.result === "Ok") 
+                    {
+                        newId = result.id;
+                        obj = new Size(newId,
+                            $("#sizenewname").val()
+                            );
+                        datasize.push(obj);
+                        $("#sizes").find(".section").first().append(getSize(obj));
+                       
+                    }
+                });
+                });
+                
+               $("#colors").click(function (e) {
+                    
+                     if ($(e.target).hasClass("mydelete")) 
+                        {
+                         
+                          delcontainer = $(e.target).parents("div.colorcontainer");
+                          id = parseInt(delcontainer.attr("data-id")); 
+                          
+                         console.log(id);
+                         
+                                $.post("/admin/ColorAndSizeComand/delcolor",  {"id": JSON.stringify(id)}, function (data) {
+                                    
+                                      if(data === "Ok")
+                                      {
+                                           for (index in datacolor)
+                                            {
+                                                if (datacolor[index].id === id)
+                                                {
+                                                    delete datacolor[index];
+                                                }
+                                            }
+                                            
+                                            delcontainer.fadeOut("slow", function () {
+                                                this.remove();
+                                            });
+                                      };
+                                  });
+                              } 
+                });
+                
+                $("#sizes").click(function (e) {
+                    
+                     if ($(e.target).hasClass("mydelete")) 
+                        {
+                         
+                          delcontainer = $(e.target).parents("div.sizecontainer");
+                          id = parseInt(delcontainer.attr("data-id")); 
+                          
+                         console.log(id);
+                         
+                                $.post("/admin/ColorAndSizeComand/delsize",  {"id": JSON.stringify(id)}, function (data) {
+                                    
+                                      if(data === "Ok")
+                                      {
+                                           for (index in datasize)
+                                            {
+                                                if (datasize[index].id === id)
+                                                {
+                                                    delete datasize[index];
+                                                }
+                                            }
+                                            
+                                            delcontainer.fadeOut("slow", function () {
+                                                this.remove();
+                                            });
+                                      };
+                                  });
+                              } 
+                });
+               
+
+
+                    $.post("/admin/colorandsizecomand/getcolor", {}, function (data) {
+                                     datacolor = JSON.parse(data); 
+
+
+                                      for (index in datacolor)
+                                          {
+                                               obj = datacolor[index];
+                                               console.log(obj);
+                                               $("#colors").find(".section").first().append(getColor(datacolor[index]));           
+                                          }
+                    });
+                    
+                    $.post("/admin/colorandsizecomand/getsize", {}, function (data) {
+                                     datasize = JSON.parse(data); 
+                                      for (index in datasize)
+                                          {
+                                               obj = datasize[index];
+                                               console.log(obj);
+                                               $("#sizes").find(".section").first().append(getSize(datasize[index]));           
+                                          }
+                    });
+                    
+                    
+                 $("#colorenter").change(function () {
+                    newColor = $("#colorenter").val();
+                    red = parseInt("0x" + newColor.substr(1, 2));
+                    green = parseInt("0x" + newColor.substr(3, 2));
+                    blue = parseInt("0x" + newColor.substr(5, 2));
+                    code = newColor.substr(1, 6);
+                    $("#colornewred").val(red);
+                    $("#colornewgreen").val(green);
+                    $("#colornewblue").val(blue);
+                    $("#colornewcode").val(code);
+                    
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills">
+                            <li class="active">
+                                 <a href="/admin/colorandsize">Цвета и размеры</a>
+                            </li>
+                            <li>
+                                <a href="/admin/section">Секции</a>
+                            </li>
+                            <li>
+                                <a href="/admin/brends">Бренды</a>
+                            </li>
+                            <li>
+                                <a href="/admin/category">Категории</a>
+                            </li>
+                            <li>
+                                <a href="/admin/products">Товары</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#colors" data-toggle="tab">Цвета</a>
+                    </li>
+                    <li>
+                        <a href="#sizes" data-toggle="tab">Размеры</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content" >
+                    <div class="tab-pane active" id="colors">
+                        <div class="section">
+                        </div>    
+                        <hr>
+                        <div class="section">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <div class="col-sm-1">
+                                                    <label  class="control-label">Название</label>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <input type="text" class="form-control" placeholder="id" disabled>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input type="text" id="colornewname" class="form-control" placeholder="Название цвета">
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <input type="text" id="colornewred" class="form-control" placeholder="Red">
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <input type="text" id="colornewgreen" class="form-control" placeholder="Green">
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <input type="text" id="colornewblue" class="form-control" placeholder="Blue">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="text" id="colornewcode" class="form-control" placeholder="Код">
+                                                </div>
+                                                <div class="col-sm-1" id="colorenterdiv">
+                                                    <input id="colorenter" type="color" class="form-control" value="#000000">
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <a class="btn btn-block btn-success" id="addcolor">V</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="sizes">
+                        <div class="section">
+                        </div>
+                        <hr>
+                        <div class="section">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <div class="col-sm-2">
+                                                    <label class="control-label">Название</label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="text" id="sizenewid" class="form-control" placeholder="id" disabled>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="sizenewname" class="form-control" placeholder="Название размера">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <a class="btn btn-block btn-success" id="addsize">V</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body></html>

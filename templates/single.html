@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html>
+     <!--{include file='head.tpl'}--> 
+    
+
+<body> 
+<!--{include file="header.html"}-->
+  <script type="text/javascript" src="/views/js/myJavaScript.js"></script>
+  
+   <link rel="stylesheet" href="/views/css/etalage.css">
+<script src="/views/js/jquery.etalage.min.js"></script>
+<script>
+			jQuery(document).ready(function($){
+
+				$('#etalage').etalage({
+					thumb_image_width: 300,
+					thumb_image_height: 400,
+					source_image_width: 900,
+					source_image_height: 1200,
+					show_hint: true,
+					click_callback: function(image_anchor, instance_id){
+						alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+					}
+				});
+
+			});
+</script>
+<div class="content">
+   
+	<div class="container">
+             <!--{foreach from=$value.about item=$about}-->
+		<div class="single">
+				<div class="col-md-9 top-in-single">
+					<div class="col-md-5 single-top">
+                                             
+						<ul id="etalage">
+                                                   <!--{foreach from=$value.foto item=$path}-->
+							<li>
+								<a href="#">
+                                                                    <img class="etalage_thumb_image img-responsive" src="/views/images/products/<!--{$path}-->" alt="" >
+								    <img class="etalage_source_image img-responsive" src="/views/images/products/<!--{$path}-->" alt="" >
+								</a>
+							</li>
+							<!--{/foreach}-->
+                                                 
+						</ul>
+                                                   
+					</div>	
+                                    
+					<div class="col-md-7 single-top-in">
+						<div class="single-para">
+                                                     
+							<h4><!--{$about["fullname"]}--></h4>
+                                                       
+                                                         
+							<p><!--{$about["smalldiscription"]}--></p>
+                                                        
+                                                        
+                                                          
+							<div class="star-on">
+								<ul>
+									<li><a href="#"><i> </i></a></li>
+									<li><a href="#"><i> </i></a></li>
+									<li><a href="#"><i> </i></a></li>
+									<li><a href="#"><i> </i></a></li>
+									<li><a href="#"><i> </i></a></li>
+								</ul>
+								<div class="review">
+									
+									<a href="#">  Оставьте отзыв</a>
+								</div>
+							<div class="clearfix"> </div>
+							</div>
+							 
+								<label  class="add-to"><!--{$about["price"]}--></label> рублей
+					
+							<div class="available">
+								<h6>Выбор :</h6>
+								<ul>
+								
+								<li>Размер:
+                                                                  
+                                                                    <select>
+                                                                        
+									  <!--{foreach from=$value.size item=$size}-->
+									<option><!--{$size.name}--></option>
+                                                                         <!--{/foreach}-->
+								</select>
+                                                               </li>
+								
+							</ul>
+						</div>
+						
+								<a href="#" class="cup item_add" data-id="<!--{$about['id']}-->">Добавить в корзину</a>
+							
+						</div>
+					</div>
+                                     
+				<div class="clearfix"> </div>
+				  <!----- tabs-box ---->
+		<div class="sap_tabs">	
+				     <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+						  <ul class="resp-tabs-list">
+						  	  <li class="resp-tab-item " aria-controls="tab_item-0" role="tab"><span>Описание</span></li>
+							  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Детальная информация</span></li>
+							  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Отзывы</span></li>
+							  <div class="clearfix"></div>
+						  </ul>				  	 
+							<div class="resp-tabs-container">
+							    <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>Описание</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
+									<div class="facts">
+									 <p><!--{$about["smalldiscription"]}--></p>   
+							        </div>
+							    	</div>
+							      <h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span>Additional Information</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+									<div class="facts">									
+										<p > Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
+										<ul >
+											<li>Multimedia Systems</li>
+											<li>Digital media adapters</li>
+											<li>Set top boxes for HDTV and IPTV Player applications on various Operating Systems and Hardware Platforms</li>
+										</ul>
+							        </div>	
+								</div>									
+							      <h2 class="resp-accordion" role="tab" aria-controls="tab_item-2"><span class="resp-arrow"></span>Reviews</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+									 <div class="facts">
+									  <p > There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
+										<ul>
+											<li>Research</li>
+											<li>Design and Development</li>
+											<li>Porting and Optimization</li>
+											<li>System integration</li>
+											<li>Verification, Validation and Testing</li>
+											<li>Maintenance and Support</li>
+										</ul>     
+							     </div>	
+							 </div>
+					      </div>
+					 </div>
+					 <script src="/views/js/easyResponsiveTabs.js" type="text/javascript"></script>
+		    <script type="text/javascript">
+			    $(document).ready(function () {
+			        $('#horizontalTab').easyResponsiveTabs({
+			            type: 'default', //Types: default, vertical, accordion           
+			            width: 'auto', //auto or any width like 600px
+			            fit: true   // 100% fit in a container
+			        });
+			    });
+			   </script>	
+</div>
+				</div>
+				<div class="col-md-3 at-single">
+					<div class="single-bottom">
+						<h4>Бренды</h4>
+                                                <!--{foreach from=$brendssing item=$brend}-->
+						<ul>
+						
+						<li>
+							<input type="checkbox"  id="brand<!--{$brend.id}-->" value="">
+							<label for="brand<!--{$brend.id}-->"><span></span><!--{$brend.name}--></label>
+						</li>
+                                              
+						</ul>
+                                                 <!--{/foreach}-->
+					</div>
+                                    <!--{if $value.iscolor==1}-->
+					<div class="single-bottom">
+						<h4>Цвета</h4>
+                                                
+                                               <!--{foreach from=$value.color item=$color}-->
+                                               
+						<ul>
+                                             
+						<li>
+							<input type="checkbox"  id="color<!--{$col.id}-->" value="">
+                                                        <label for="color<!--{$col.id}-->" style="color: #<!--{$color.kod}-->"><span></span><!--{$color.name}--></label>
+						</li>
+                                               
+						</ul>
+                                                 <!--{/foreach}-->
+					</div>
+                                    <!--{/if}-->
+					<div class="single-bottom">
+						<h4>Товары из этой категории</h4>
+							<!--{foreach from=$categorysing item=$cat}-->
+							<div class="product-go">
+								<img class="img-responsive fashion" src="/views/images/products/<!--{$cat.foto[1]}-->" alt="">
+							<div class="grid-product">
+								<a href="../product/<!--{$cat.id}-->" class="elit"><!--{$cat.name}--></a>
+								<span class=" price-in"> <!--{$cat.price}--> </span>
+							</div>
+							<div class="clearfix"> </div>
+							</div>
+                                                        <!--{/foreach}-->
+				</div> 
+				</div>
+				<div class="clearfix"> </div>		
+		</div>
+<!--{/foreach}-->
+
+	</div>
+</div>
+  
+  
+	<!--{include file="footer.tpl"}-->
+       
+        
+</body>
+
+
+</html>
