@@ -1,5 +1,5 @@
 <head>
-	<title>лаба</title>
+	<title>Super Duper Shop</title>
 
 	<link href="/views/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="/views/js/jquery.min.js"></script>
