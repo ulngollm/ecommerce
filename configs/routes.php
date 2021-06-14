@@ -1,6 +1,7 @@
 <?php
 
 return array(
+
     'checkout' => 'cart/info',
 
     "admin/exit" => "admin/exit",
@@ -31,6 +32,14 @@ return array(
     'cart/clear' => 'cart/clear',
     'cart/info' => 'cart/info',
 
+    // remove after 1 lab
+    'products' => 'site/products',
+    'checkout' => 'site/checkout',
+    'decor' => 'site/decor',
+    'health' => 'site/health',
+    'mobile' => 'site/mobile',
+    'single' => 'site/single',
+    //
     'error' => 'site/error',
     'contact' => 'site/contact',
 
