@@ -53,51 +53,51 @@
                 </div>
                 <div class="top-nav">		
                     <ul class="megamenu skyblue">
-                        <!--{section name=globalmenu loop=$arraymenu}-->
-                        <!--{if $activgrid == $arraymenu[globalmenu].id}-->
+                        {# section name=globalmenu loop=$arraymenu #}
+                        {# if $activgrid == $arraymenu[globalmenu].id #}
                         <li class="active grid">
-                            <!--{else}-->
+                            {# else #}
                         <li class="grid">
-                            <!--{/if}-->
-                            <a  href="#"><!--{$arraymenu[globalmenu].name}--></a>
+                            {# /if #}
+                            <a  href="#">{# $arraymenu[globalmenu].name #}</a>
                             <div class="megapanel">
                                 <div class="row">   
-                                    <!--{section name=categorygroupe loop=$arraymenu[globalmenu].categories}-->
+                                    {# section name=categorygroupe loop=$arraymenu[globalmenu].categories #}
 
                                     <div class="col1">
                                         <div class="h_nav">
-                                            <!--{if $smarty.section.categorygroupe.index == 0}-->
+                                            {# if $smarty.section.categorygroupe.index == 0 #}
                                             <h4>Категории</h4>
-                                            <!--{/if}-->
+                                            {# /if #}
                                             <ul> 
-                                                <!--{section name=category loop=$arraymenu[globalmenu].categories[categorygroupe]}-->
-                                                <li><a href="/category/<!--{$arraymenu[globalmenu].categories[categorygroupe][category].id}-->"><!--{$arraymenu[globalmenu].categories[categorygroupe][category].name}--></a></li>
-                                                <!--{/section}-->
+                                                {# section name=category loop=$arraymenu[globalmenu].categories[categorygroupe] #}
+                                                <li><a href="/category/{# $arraymenu[globalmenu].categories[categorygroupe][category].id #}">{# $arraymenu[globalmenu].categories[categorygroupe][category].name #}</a></li>
+                                                {# /section #}
                                             </ul>
                                         </div>
                                     </div>
-                                    <!--{/section}-->
+                                    {# /section #}
 
-                                    <!--{section name=brendgroupe loop=$arraymenu[globalmenu].brends}-->
+                                    {# section name=brendgroupe loop=$arraymenu[globalmenu].brends #}
                                     <div class="col1">
                                         <div class="h_nav">   
-                                            <!--{if $smarty.section.brendgroupe.index == 0}-->
+                                            {# if $smarty.section.brendgroupe.index == 0 #}
                                             <h4>Популярные бренды</h4>
-                                            <!--{/if}-->
+                                            {# /if #}
                                             <ul> 
-                                                <!--{section name=brend loop=$arraymenu[globalmenu].brends[brendgroupe]}-->
-                                                <li><a href="brend/<!--{$arraymenu[globalmenu].brends[brendgroupe][brend].id}-->"><!--{$arraymenu[globalmenu].brends[brendgroupe][brend].name}--></a></li>
-                                                <!--{/section}-->
+                                                {# section name=brend loop=$arraymenu[globalmenu].brends[brendgroupe] #}
+                                                <li><a href="brend/{# $arraymenu[globalmenu].brends[brendgroupe][brend].id #}">{# $arraymenu[globalmenu].brends[brendgroupe][brend].name #}</a></li>
+                                                {# /section #}
                                             </ul>
                                         </div>
                                     </div>
-                                    <!--{/section}-->
+                                    {# /section #}
 
                                 </div>
                             </div>                                              
 
                         </li>
-                        <!--{/section}-->                  
+                        {# /section #}                  
 
 
                 </div>
@@ -105,8 +105,8 @@
                     <a href="/checkout">
                         <h3> <div class="total">
                              
-                                <span class="simpleCart_total"> <!--{$costs}--> р</span>
-                                <span id="simpleCart_quantity" class="simpleCart_quantity"> шт: <!--{$quanty}-->  </span> </div>
+                                <span class="simpleCart_total"> {# $costs #} р</span>
+                                <span id="simpleCart_quantity" class="simpleCart_quantity"> шт: {# $quanty #}  </span> </div>
                             <img src="/views/images/cart.png" alt=""/>
                         </h3>
                     </a>

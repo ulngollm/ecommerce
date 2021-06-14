@@ -6,10 +6,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
 <html>
-     <!--{include file='head.tpl'}--> 
+     {# include file='head.tpl' #} 
      <script type="text/javascript" src="http://sameshop/views/js/myJavaScript.js"></script>
 <body> 
-<!--{include file="header.html"}-->
+{# include file="header.html" #}
   
 <!--banner-->
 
@@ -17,20 +17,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="container">	
 		  <div class="wmuSlider example1">
 			   <div class="wmuSliderWrapper">
-                               <!--{foreach from=$discountarray item=$value}-->
+                               {# foreach from=$discountarray item=$value #}
 			 <article style="position: absolute; width: 100%; opacity: 0;"> 
 				   	<div class="banner-wrap">
 					
 						<div class="banner-top">
-                                                    <a href="single/product/<!--{$value.id}-->">
+                                                    <a href="single/product/{# $value.id #}">
 						<div class="banner-top-in">
-                                                    <img src="views/images/products/<!--{$value.foto[0]}-->" class="img-responsive" alt="">
+                                                    <img src="views/images/products/{# $value.foto[0] #}" class="img-responsive" alt="">
 						</div></a>
 						<div class="cart-at grid_1 simpleCart_shelfItem">
-								<div class="item_add" data-id="<!--{$value.id}-->"><span class="item_price" ><!--{$value.price}--> <i> </i> </span></div>
+								<div class="item_add" data-id="{# $value.id #}"><span class="item_price" >{# $value.price #} <i> </i> </span></div>
 							<div class="off">
-								<label><!--{$value.discount}--> % </label>
-								<p><!--{$value.fullname}--></p>
+								<label>{# $value.discount #} % </label>
+								<p>{# $value.fullname #}</p>
 							</div>
 						</div>
 						<div class="clearfix"> </div>
@@ -41,15 +41,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<!--  <div class="banner-top banner-bottom -->
 						
 						<div class="banner-top">
-						<a href="single/product/<!--{$value.id}-->">
+						<a href="single/product/{# $value.id #}">
 						<div class="banner-top-in">
-							<img src="views/images/products/<!--{$value.foto[1]}-->" class="img-responsive" alt="">
+							<img src="views/images/products/{# $value.foto[1] #}" class="img-responsive" alt="">
 						</div></a>
 						<div class="cart-at grid_1 simpleCart_shelfItem">
-								<div class="item_add" data-id="<!--{$value.id}-->"><span class="item_price" ><!--{$value.price}--> <i> </i> </span></div>
+								<div class="item_add" data-id="{# $value.id #}"><span class="item_price" >{# $value.price #} <i> </i> </span></div>
 							<div class="off">
-								<label><!--{$value.discount}--> %</label>
-								<p><!--{$value.fullname}--></p>
+								<label>{# $value.discount #} %</label>
+								<p>{# $value.fullname #}</p>
 							</div>
 						</div>
 						<div class="clearfix"> </div>
@@ -62,7 +62,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						
 				   	 </div>
 			</article>
-                               <!--{/foreach}-->
+                               {# /foreach #}
 			</div>
                       
 			 <ul class="wmuSliderPagination">
@@ -103,35 +103,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- //requried-jsfiles-for owl -->
                  
 			<div id="owl-demo" class="owl-carousel text-center">
-                           <!--{foreach from=$newarray item=$value}--> 
+                           {# foreach from=$newarray item=$value #} 
 			<div class="item">
                             
 				<div class=" box-in">
                                    
 			<div class=" grid_box">		
                              
-							 <a href="single/product/<!--{$value.id}-->" > <img src="views/images/products/<!--{$value.foto[0]}-->" class="img-responsive" alt="">
+							 <a href="single/product/{# $value.id #}" > <img src="views/images/products/{# $value.foto[0] #}" class="img-responsive" alt="">
 							 	<div class="zoom-icon">
 							 		
 									<ul class="in-by">
 										<li><h5>sizes:</h5></li>  
                                                                              
                                                                                
-                                                                                  <!--{foreach from=$value.size item=$size}-->
+                                                                                  {# foreach from=$value.size item=$size #}
                                                                                  
-										<li><span> <!--{$value.size[0]}--></span></li>
+										<li><span> {# $value.size[0] #}</span></li>
                                                                                 
-										<!--{/foreach}-->
+										{# /foreach #}
 									</ul>
 					
 					
 						<ul class="in-by-color">
 							<li><h5>colors:</h5></li>                   
                                                                                 
-                                                                                  <!--{foreach from=$value.color item=$color}-->
+                                                                                  {# foreach from=$value.color item=$color #}
                                                                                 
-                                                      <span class=" item_price" >  <i> <!--{$value.color}--></i> </span>
-                                                     <!--{/foreach}-->
+                                                      <span class=" item_price" >  <i> {# $value.color #}</i> </span>
+                                                     {# /foreach #}
 							
 						</ul>
 					
@@ -140,7 +140,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		           </div>
 					<!---->
 						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add" data-id="<!--{$value.id}-->"><span class=" item_price" > <!--{$value.price}--> <i> </i> </span></a>					
+							<a href="#" class="cup item_add" data-id="{# $value.id #}"><span class=" item_price" > {# $value.price #} <i> </i> </span></a>					
 						</div>
 					<!---->
                                      
@@ -151,7 +151,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			
 			
-<!--{/foreach}-->
+{# /foreach #}
 			
 
 
@@ -169,16 +169,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<h2 class="middle">Товары дня</h2>
               
 		<div class="col-best">
-			 <!--{foreach from=$bestarray item=$value}-->  
+			 {# foreach from=$bestarray item=$value #}  
 			<div class="col-md-4">
                             
-				<a href="single/product/<!--{$value.id}-->"><div class="col-in">
+				<a href="single/product/{# $value.id #}"><div class="col-in">
 					<div class="col-in-left">
-						<img src="views/images/products/<!--{$value.foto[0]}-->" class="img-responsive" alt="">
+						<img src="views/images/products/{# $value.foto[0] #}" class="img-responsive" alt="">
 					</div>
 					</a>
 					<div class="col-in-right grid_1 simpleCart_shelfItem">
-						<h5><!--{$value.name}--></h5>
+						<h5>{# $value.name #}</h5>
 						<ul class="star">
 							<li><i> </i>  </li>
 							<li><i> </i>  </li>
@@ -187,7 +187,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                         <li><i> </i>  </li>
 						</ul>
 						<!---->
-						<a href="#" class="item_add" data-id="<!--{$value.id}-->"><span class="white item_price" ><!--{$value.price}--> <i> </i> </span></a>
+						<a href="#" class="item_add" data-id="{# $value.id #}"><span class="white item_price" >{# $value.price #} <i> </i> </span></a>
 						<!---->
 					</div>
 					<div class="clearfix"> </div>
@@ -195,7 +195,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
                                     
 			</div>
-                    <!--{/foreach}-->
+                    {# /foreach #}
 			
 			<div class="clearfix"> </div>
                           
@@ -242,7 +242,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	</div>
 </div>
-<!--{include file="footer.tpl"}-->
+{# include file="footer.tpl" #}
 
 </body>
 </html>

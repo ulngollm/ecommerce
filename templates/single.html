@@ -1,11 +1,11 @@
 
 <!DOCTYPE html>
 <html>
-     <!--{include file='head.tpl'}--> 
+     {# include file='head.tpl' #} 
     
 
 <body> 
-<!--{include file="header.html"}-->
+{# include file="header.html" #}
   <script type="text/javascript" src="/views/js/myJavaScript.js"></script>
   
    <link rel="stylesheet" href="/views/css/etalage.css">
@@ -29,20 +29,20 @@
 <div class="content">
    
 	<div class="container">
-             <!--{foreach from=$value.about item=$about}-->
+             {# foreach from=$value.about item=$about #}
 		<div class="single">
 				<div class="col-md-9 top-in-single">
 					<div class="col-md-5 single-top">
                                              
 						<ul id="etalage">
-                                                   <!--{foreach from=$value.foto item=$path}-->
+                                                   {# foreach from=$value.foto item=$path #}
 							<li>
 								<a href="#">
-                                                                    <img class="etalage_thumb_image img-responsive" src="/views/images/products/<!--{$path}-->" alt="" >
-								    <img class="etalage_source_image img-responsive" src="/views/images/products/<!--{$path}-->" alt="" >
+                                                                    <img class="etalage_thumb_image img-responsive" src="/views/images/products/{# $path #}" alt="" >
+								    <img class="etalage_source_image img-responsive" src="/views/images/products/{# $path #}" alt="" >
 								</a>
 							</li>
-							<!--{/foreach}-->
+							{# /foreach #}
                                                  
 						</ul>
                                                    
@@ -51,10 +51,10 @@
 					<div class="col-md-7 single-top-in">
 						<div class="single-para">
                                                      
-							<h4><!--{$about["fullname"]}--></h4>
+							<h4>{# $about["fullname"] #}</h4>
                                                        
                                                          
-							<p><!--{$about["smalldiscription"]}--></p>
+							<p>{# $about["smalldiscription"] #}</p>
                                                         
                                                         
                                                           
@@ -73,7 +73,7 @@
 							<div class="clearfix"> </div>
 							</div>
 							 
-								<label  class="add-to"><!--{$about["price"]}--></label> рублей
+								<label  class="add-to">{# $about["price"] #}</label> рублей
 					
 							<div class="available">
 								<h6>Выбор :</h6>
@@ -83,16 +83,16 @@
                                                                   
                                                                     <select>
                                                                         
-									  <!--{foreach from=$value.size item=$size}-->
-									<option><!--{$size.name}--></option>
-                                                                         <!--{/foreach}-->
+									  {# foreach from=$value.size item=$size #}
+									<option>{# $size.name #}</option>
+                                                                         {# /foreach #}
 								</select>
                                                                </li>
 								
 							</ul>
 						</div>
 						
-								<a href="#" class="cup item_add" data-id="<!--{$about['id']}-->">Добавить в корзину</a>
+								<a href="#" class="cup item_add" data-id="{# $about['id'] #}">Добавить в корзину</a>
 							
 						</div>
 					</div>
@@ -110,7 +110,7 @@
 							<div class="resp-tabs-container">
 							    <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>Описание</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
 									<div class="facts">
-									 <p><!--{$about["smalldiscription"]}--></p>   
+									 <p>{# $about["smalldiscription"] #}</p>   
 							        </div>
 							    	</div>
 							      <h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span>Additional Information</h2><div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
@@ -153,57 +153,57 @@
 				<div class="col-md-3 at-single">
 					<div class="single-bottom">
 						<h4>Бренды</h4>
-                                                <!--{foreach from=$brendssing item=$brend}-->
+                                                {# foreach from=$brendssing item=$brend #}
 						<ul>
 						
 						<li>
-							<input type="checkbox"  id="brand<!--{$brend.id}-->" value="">
-							<label for="brand<!--{$brend.id}-->"><span></span><!--{$brend.name}--></label>
+							<input type="checkbox"  id="brand{# $brend.id #}" value="">
+							<label for="brand{# $brend.id #}"><span></span>{# $brend.name #}</label>
 						</li>
                                               
 						</ul>
-                                                 <!--{/foreach}-->
+                                                 {# /foreach #}
 					</div>
-                                    <!--{if $value.iscolor==1}-->
+                                    {# if $value.iscolor==1 #}
 					<div class="single-bottom">
 						<h4>Цвета</h4>
                                                 
-                                               <!--{foreach from=$value.color item=$color}-->
+                                               {# foreach from=$value.color item=$color #}
                                                
 						<ul>
                                              
 						<li>
-							<input type="checkbox"  id="color<!--{$col.id}-->" value="">
-                                                        <label for="color<!--{$col.id}-->" style="color: #<!--{$color.kod}-->"><span></span><!--{$color.name}--></label>
+							<input type="checkbox"  id="color{# $col.id #}" value="">
+                                                        <label for="color{# $col.id #}" style="color: #{# $color.kod #}"><span></span>{# $color.name #}</label>
 						</li>
                                                
 						</ul>
-                                                 <!--{/foreach}-->
+                                                 {# /foreach #}
 					</div>
-                                    <!--{/if}-->
+                                    {# /if #}
 					<div class="single-bottom">
 						<h4>Товары из этой категории</h4>
-							<!--{foreach from=$categorysing item=$cat}-->
+							{# foreach from=$categorysing item=$cat #}
 							<div class="product-go">
-								<img class="img-responsive fashion" src="/views/images/products/<!--{$cat.foto[1]}-->" alt="">
+								<img class="img-responsive fashion" src="/views/images/products/{# $cat.foto[1] #}" alt="">
 							<div class="grid-product">
-								<a href="../product/<!--{$cat.id}-->" class="elit"><!--{$cat.name}--></a>
-								<span class=" price-in"> <!--{$cat.price}--> </span>
+								<a href="../product/{# $cat.id #}" class="elit">{# $cat.name #}</a>
+								<span class=" price-in"> {# $cat.price #} </span>
 							</div>
 							<div class="clearfix"> </div>
 							</div>
-                                                        <!--{/foreach}-->
+                                                        {# /foreach #}
 				</div> 
 				</div>
 				<div class="clearfix"> </div>		
 		</div>
-<!--{/foreach}-->
+{# /foreach #}
 
 	</div>
 </div>
   
   
-	<!--{include file="footer.tpl"}-->
+	{# include file="footer.tpl" #}
        
         
 </body>

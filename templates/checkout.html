@@ -6,10 +6,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
 <html>
-     <!--{include file='head.tpl'}--> 
+     {# include file='head.tpl' #} 
      <script type="text/javascript" src="/views/js/myJavaScript.js"></script>
 <body> 
-<!--{include file="header.html"}-->
+{# include file="header.html" #}
   
 <!--banner-->
 <div class="container">
@@ -20,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 <div class="price-details">
 				 <h3>Товары</h3>
 				 <span>Total</span>
-				 <span class="simpleCart_total"><!--{$cost}--></span>
+				 <span class="simpleCart_total">{# $cost #}</span>
 				 <span>Скидка</span>
 				 <span class="total1">---</span>
 				 <span>Стоимость доставки</span>
@@ -29,7 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			 </div>	
 			 <ul class="total_price">
 			   <li class="last_price"> <h4>ИТОГ</h4></li>	
-                           <li class="last_price"><span class="simpleCart_total"> <!--{$cost}--></span></li>
+                           <li class="last_price"><span class="simpleCart_total"> {# $cost #}</span></li>
 			   <div class="clearfix"> </div>
 			 </ul>
 			
@@ -45,35 +45,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		 <div class="col-md-9 cart-items">
 			 <h1>Моя корзина</h1>
-                         <!--{foreach from=$cartinfo item=$cart}--> 
+                         {# foreach from=$cartinfo item=$cart #} 
                          
                         
 			 <div class="cart-header">
                                  
                           
 				 <div class="cart-sec simpleCart_shelfItem">
-                                      <div class="close1 myclose" data-id="<!--{$cart.id}-->"> </div>
+                                      <div class="close1 myclose" data-id="{# $cart.id #}"> </div>
 						<div class="cart-item cyc">
                                                    
-							 <img src="/views/images/products/<!--{$cart.path}-->" class="img-responsive" alt=""/>
+							 <img src="/views/images/products/{# $cart.path #}" class="img-responsive" alt=""/>
                                                           
 						</div>
 					   <div class="cart-item-info">
 						<h3>
                                                      
-                                                     <a href="#"><!--{$cart.fullname}--> </a>
+                                                     <a href="#">{# $cart.fullname #} </a>
                                                     
                                                 </h3>
                                                
                                               
 						<ul class="qty">
                                                     
-							<li><p><!--{$size.name}--></p></li>
+							<li><p>{# $size.name #}</p></li>
                                                        
-                                                         <li><p><!--{$cart[0]}--> шт.</p></li>
+                                                         <li><p>{# $cart[0] #} шт.</p></li>
                                                           
                                                             
-							<li><p><!--{$cart.price}--> рублей</p></li>
+							<li><p>{# $cart.price #} рублей</p></li>
                                                            
                                                         
 						</ul>
@@ -91,7 +91,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 
 			 </div>
                            
-			 <!--{/foreach}-->	
+			 {# /foreach #}	
 		 </div>
 		 
 		
@@ -100,7 +100,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 </div>
 	 </div>
 
-	<!--{include file="footer.tpl"}-->
+	{# include file="footer.tpl" #}
 
 </body>
 </html>
