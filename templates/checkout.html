@@ -7,12 +7,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 {#include file='head.tpl'#}
-<script type="text/javascript" src="/views/js/myJavaScript.js"></script>
-
 <body>
 	{#include file="header.html"#}
 
-	<!--banner-->
 	<div class="container">
 		<div class="check">
 
@@ -48,40 +45,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 			<div class="col-md-9 cart-items">
 				<h1>Моя корзина</h1>
-				{#foreach from=$cartinfo item=$cart#}
+				{#foreach from=$cartinfo item=$product#}
 
 				<div class="cart-header">
-
-
 					<div class="cart-sec simpleCart_shelfItem">
-						<div class="close1 myclose" data-id="{#$cart.id#}"> </div>
+						<div class="close1 myclose" data-id="{#$product.id#}"> </div>
 						<div class="cart-item cyc">
 
-							<img src="/views/images/products/{#$cart.path#}" class="img-responsive" alt="" />
-
+							<img src="/views/images/products/{#$product.path#}" class="img-responsive" alt="" />
 						</div>
 						<div class="cart-item-info">
 							<h3>
-								<a href="#">{#$cart.fullname#} </a>
+								<a href="#">{#$product.fullname#} </a>
 							</h3>
 							<ul class="qty">
 								<li>
 									<p>{#$size.name#}</p>
 								</li>
-
 								<li>
-									<p>{#$cart[0]#} шт.</p>
+									<p>{#$product.quantity#} шт.</p>
 								</li>
-
-
 								<li>
-									<p>{#$cart.price#} рублей</p>
+									<p>{#$product.price#} рублей</p>
 								</li>
 
 
 							</ul>
-
-
 							<div class="delivery">
 								<p>Бесплатная доставка</p>
 								<span>В течение 15-30 дней</span>
@@ -93,11 +82,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 
 				</div>
-
 				{#/foreach#}
 			</div>
-
-
 			<div class="clearfix"> </div>
 
 		</div>

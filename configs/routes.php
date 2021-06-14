@@ -1,9 +1,6 @@
 <?php
 
 return array(
-
-    'checkout' => 'cart/info',
-
     "admin/exit" => "admin/exit",
     "admin/enter" => "admin/enter",
 
@@ -28,17 +25,17 @@ return array(
     'single/([0-9]+)' => 'single/product/$1',
 
     'cart/add/([0-9]+)' => 'cart/add/$1',
-    'cart/sub/([0-9]+)' => 'cart/sub/$1',
+    'cart/remove/([0-9]+)' => 'cart/remove/$1',
     'cart/clear' => 'cart/clear',
     'cart/info' => 'cart/info',
 
     // remove after 1 lab
-    'products' => 'site/products',
-    'checkout' => 'site/checkout',
-    'decor' => 'site/decor',
-    'health' => 'site/health',
-    'mobile' => 'site/mobile',
-    'single' => 'site/single',
+    // 'products' => 'site/products',
+    'checkout' => 'cart/checkout',
+    // 'decor' => 'site/decor',
+    // 'health' => 'site/health',
+    // 'mobile' => 'site/mobile',
+    // 'single' => 'site/single',
     //
     'error' => 'site/error',
     'contact' => 'site/contact',

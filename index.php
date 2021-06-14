@@ -7,7 +7,7 @@ session_start();
 //$_SESSION['products'][5]['price']= 978;
 
 
-//var_dump($_SESSION['products']);
+// var_dump($_SESSION['products']);
 //FRONT CONTROLLERS
 
 //1. Общие настройки

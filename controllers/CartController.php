@@ -1,57 +1,46 @@
 <?php
 
 ini_set("display_errors", 1);
-
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+error_reporting(E_ALL);
 
 
 class CartController
 {
 
-
     public function actionAdd($id)
     {
-
         Cart::addProduct($id); //добавляем в корзину
-
-        return self::ReturnResult();
+        return self::returnResult();
     }
 
-    //считаем количество товаров в корзине (в сессии
-    //@return int хз, что значит эта строка, пусть будет
-
-
-
-
-
-    public function actionSub($id)
+    public function actionRemove($id)
     {
-        Cart::subProduct($id);
-        return self::ReturnResult();
+        Cart::removeProduct($id);
+        return self::returnResult();
     }
 
     public function actionInfo()
     {
-
         $cartInfo = Cart::getProductofCart();
-        ViewIndex::checkout($cartInfo);
-        return self::ReturnResult();
+        return self::returnResult();
+    }
+
+    public function actionCheckout()
+    {
+        ViewIndex::checkout();
     }
 
     public function actionClear()
     {
         Cart::clear();
-        return self::ReturnResult();
+        return self::returnResult();
     }
 
-
-    public static function ReturnResult()
+    public static function returnResult()
     {
-
         $json_data['count'] = Cart::countItems();
         $json_data['sum'] = Cart::sumItems();
-
         echo json_encode($json_data);
-        return TRUE;
+        // return TRUE;
     }
 }

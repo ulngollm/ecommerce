@@ -1,33 +1,33 @@
-<!--header-->	
-<div class="header" >
-    <div class="top-header" >		
+<!--header-->
+<div class="header">
+    <div class="top-header">
         <div class="container">
-            <div class="top-head" >
+            <div class="top-head">
                 <div class="header-para">
                     <ul class="social-in">
-                        <li><a href="#"><i> </i></a></li>						
+                        <li><a href="#"><i> </i></a></li>
                         <li><a href="#"><i class="ic"> </i></a></li>
                         <li><a href="#"><i class="ic1"> </i></a></li>
 
-                    </ul>			
+                    </ul>
                 </div>
                 <ul class="header-in">
-                    <li ><a href="/error" >  бренды</a></li>
+                    <li><a href="/error"> бренды</a></li>
                     <li><a href="/error">о магазине</a> </li>
-                    <li><a href="/contact">   контакты</a></li>
-                    <li ><a href="#" >   как пользоваться</a></li>
+                    <li><a href="/contact"> контакты</a></li>
+                    <li><a href="#"> как пользоваться</a></li>
                 </ul>
                 <div class="search-top">
                     <div class="search">
                         <form>
                             <input type="text" value="поиск товаров ?" onfocus="this.value = '';" onblur="if (this.value == '') {
                                         this.value = 'поиск товаров ?';
-                                    }" >
-                            <input type="submit" value="" >
+                                    }">
+                            <input type="submit" value="">
                         </form>
                     </div>
                     <div class="world">
-                        <ul >
+                        <ul>
                             <li><a href="#"><span> </span></a> </li>
                             <li><select class="in-drop">
                                     <option>RU</option>
@@ -44,14 +44,14 @@
             </div>
         </div>
     </div>
-    <!---->	
+    <!---->
     <div class="header-top">
         <div class="container">
             <div class="head-top">
                 <div class="logo">
                     <a href="/index"><img src="/views/images/logo.png"></a>
                 </div>
-                <div class="top-nav">		
+                <div class="top-nav">
                     <ul class="megamenu skyblue">
                         {#section name=globalmenu loop=$arraymenu#}
                         {#if $activgrid == $arraymenu[globalmenu].id#}
@@ -59,9 +59,9 @@
                             {#else#}
                         <li class="grid">
                             {#/if#}
-                            <a  href="#">{#$arraymenu[globalmenu].name#}</a>
+                            <a href="#">{#$arraymenu[globalmenu].name#}</a>
                             <div class="megapanel">
-                                <div class="row">   
+                                <div class="row">
                                     {#section name=categorygroupe loop=$arraymenu[globalmenu].categories#}
 
                                     <div class="col1">
@@ -69,9 +69,12 @@
                                             {#if $smarty.section.categorygroupe.index == 0#}
                                             <h4>Категории</h4>
                                             {#/if#}
-                                            <ul> 
-                                                {#section name=category loop=$arraymenu[globalmenu].categories[categorygroupe]#}
-                                                <li><a href="/category/{#$arraymenu[globalmenu].categories[categorygroupe][category].id#}">{#$arraymenu[globalmenu].categories[categorygroupe][category].name#}</a></li>
+                                            <ul>
+                                                {#section name=category
+                                                loop=$arraymenu[globalmenu].categories[categorygroupe]#}
+                                                <li><a
+                                                        href="/category/{#$arraymenu[globalmenu].categories[categorygroupe][category].id#}">{#$arraymenu[globalmenu].categories[categorygroupe][category].name#}</a>
+                                                </li>
                                                 {#/section#}
                                             </ul>
                                         </div>
@@ -80,13 +83,15 @@
 
                                     {#section name=brendgroupe loop=$arraymenu[globalmenu].brends#}
                                     <div class="col1">
-                                        <div class="h_nav">   
+                                        <div class="h_nav">
                                             {#if $smarty.section.brendgroupe.index == 0#}
                                             <h4>Популярные бренды</h4>
                                             {#/if#}
-                                            <ul> 
+                                            <ul>
                                                 {#section name=brend loop=$arraymenu[globalmenu].brends[brendgroupe]#}
-                                                <li><a href="brend/{#$arraymenu[globalmenu].brends[brendgroupe][brend].id#}">{#$arraymenu[globalmenu].brends[brendgroupe][brend].name#}</a></li>
+                                                <li><a
+                                                        href="brend/{#$arraymenu[globalmenu].brends[brendgroupe][brend].id#}">{#$arraymenu[globalmenu].brends[brendgroupe][brend].name#}</a>
+                                                </li>
                                                 {#/section#}
                                             </ul>
                                         </div>
@@ -94,23 +99,26 @@
                                     {#/section#}
 
                                 </div>
-                            </div>                                              
+                            </div>
 
                         </li>
-                        {#/section#}                  
+                        {#/section#}
 
 
                 </div>
                 <div class="cart box_1">
                     <a href="/checkout">
-                        <h3> <div class="total">
-                             
+                        <h3>
+                            <div class="total">
+
                                 <span class="simpleCart_total"> {#$costs#} р</span>
-                                <span id="simpleCart_quantity" class="simpleCart_quantity"> шт: {#$quanty#}  </span> </div>
-                            <img src="/views/images/cart.png" alt=""/>
+                                <span id="simpleCart_quantity" class="simpleCart_quantity"> шт: {#$quanty#} </span>
+                            </div>
+                            <img src="/views/images/cart.png" alt="" />
                         </h3>
                     </a>
-                    <p><a href="javascript:;" class="simpleCart_empty"><img src="/views/images/cart-c.png"  alt=""></a></p>
+                    <p><a href="javascript:;" class="simpleCart_empty"><img src="/views/images/cart-c.png" alt=""></a>
+                    </p>
                     <div class="clearfix"> </div>
                 </div>
 
