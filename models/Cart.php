@@ -5,13 +5,10 @@
 class Cart
 {
 
-
-
     public static function clear()
     {
-        //Для удаления массива используется функция unset(<массив>)
         unset($_SESSION['products']);
-        unset($_SESSION['cartSum']); //??
+        unset($_SESSION['cartSum']);
     }
 
     public static function addProduct($id)
@@ -21,7 +18,7 @@ class Cart
         $myDB = new SafeMySQL();
         $query = "SELECT price FROM products WHERE id = $id";
         $productPrice = $myDB->getOne($query);
-        $_SESSION['cartSum'] += $productPrice; //??
+        $_SESSION['cartSum'] += $productPrice;
 
         if (isset($_SESSION['products'][$id])) {
             $_SESSION['products'][$id]++;
@@ -45,19 +42,17 @@ class Cart
         
     }
 
-    public static function countItems()
+    public static function getCountItems()
     {
         $count = isset($_SESSION['products'])? array_sum($_SESSION['products']): 0;
         return $count;
     }
 
-    public static function sumItems()
+    public static function getTotalSum()
     {
         $sum = $_SESSION['cartSum'] ?? 0;
         return $sum;
     }
-
-
 
     public static function getProductofCart()
     {
@@ -72,7 +67,7 @@ class Cart
 
             $cart["list"] = $myDB->getAll($query);
             $cart["sum"] = $_SESSION["cartSum"];
-            $cart["quantity"] = Cart::countItems();
+            $cart["quantity"] = Cart::getCountItems();
             
             foreach($cart['list'] as &$product){
                 $id = $product['id'];

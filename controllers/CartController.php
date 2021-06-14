@@ -21,7 +21,6 @@ class CartController
 
     public function actionInfo()
     {
-        $cartInfo = Cart::getProductofCart();
         return self::returnResult();
     }
 
@@ -38,9 +37,8 @@ class CartController
 
     public static function returnResult()
     {
-        $json_data['count'] = Cart::countItems();
-        $json_data['sum'] = Cart::sumItems();
+        $json_data['count'] = Cart::getCountItems();
+        $json_data['sum'] = Cart::getTotalSum();
         echo json_encode($json_data);
-        // return TRUE;
     }
 }
