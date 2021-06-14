@@ -22,8 +22,8 @@ class ViewIndex
 
 
       $smarty->assign('arraymenu', $arrayMenu);
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
       $smarty->display("index.html");
    }
    public static function error()
@@ -34,8 +34,8 @@ class ViewIndex
       $smarty->assign('costs', $arrayinfo['costs']);
       $smarty->assign('quanty', $arrayinfo['quant']);
 
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
       $smarty->display("404.tpl");
    }
 
@@ -57,8 +57,8 @@ class ViewIndex
 
       $smarty->assign('pages', mypagenavigation::getPage($kolrows, PER_PAGE, $page, $baselink));
 
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
       $smarty->display("products.html");
    }
 
@@ -72,8 +72,8 @@ class ViewIndex
       $smarty->assign('costs', $arrayinfo['costs']);
       $smarty->assign('quanty', $arrayinfo['quant']);
 
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
       $smarty->display("contact.html");
    }
 
@@ -95,8 +95,8 @@ class ViewIndex
       $smarty->assign('brendssing', $single['brends']);
 
       //   var_dump($single);
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
 
       $smarty->display("single.html");
    }
@@ -106,8 +106,8 @@ class ViewIndex
       $arrayMenu = GlobalMenu::returnArrayMenu();
       $smarty->assign('arraymenu', $arrayMenu);
 
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
       $smarty->display("decor.html");
    }
    public static function checkout($cart)
@@ -124,8 +124,8 @@ class ViewIndex
       $smarty->assign('cartinfo', $cart["about"]);
       $smarty->assign('cost', $cart["costs"]);
 
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
       $smarty->display("checkout.html");
    }
    public static function health()
@@ -133,8 +133,8 @@ class ViewIndex
       $smarty = new Smarty();
       $arrayMenu = GlobalMenu::returnArrayMenu();
       $smarty->assign('arraymenu', $arrayMenu);
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
       $smarty->display("health.html");
    }
    public static function mobile()
@@ -142,8 +142,8 @@ class ViewIndex
       $smarty = new Smarty();
       $arrayMenu = GlobalMenu::returnArrayMenu();
       $smarty->assign('arraymenu', $arrayMenu);
-      $smarty->left_delimiter = '{# ';
-      $smarty->right_delimiter = ' #}';
+      $smarty->left_delimiter = '{#';
+      $smarty->right_delimiter = '#}';
       $smarty->display("mobile.html");
    }
 }

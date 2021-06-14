@@ -6,227 +6,217 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
 <html>
-     {# include file='head.tpl' #} 
-     <script type="text/javascript" src="http://sameshop/views/js/myJavaScript.js"></script>
-<body> 
-{# include file="header.html" #}
-  
-<!--banner-->
+{#include file='head.tpl'#}
+<script type="text/javascript" src="http://sameshop/views/js/myJavaScript.js"></script>
+
+<body>
+	{#include file="header.html"#}
+
+	<!--banner-->
 
 	<div class="banner">
-<div class="container">	
-		  <div class="wmuSlider example1">
-			   <div class="wmuSliderWrapper">
-                               {# foreach from=$discountarray item=$value #}
-			 <article style="position: absolute; width: 100%; opacity: 0;"> 
-				   	<div class="banner-wrap">
-					
-						<div class="banner-top">
-                                                    <a href="single/product/{# $value.id #}">
-						<div class="banner-top-in">
-                                                    <img src="views/images/products/{# $value.foto[0] #}" class="img-responsive" alt="">
-						</div></a>
-						<div class="cart-at grid_1 simpleCart_shelfItem">
-								<div class="item_add" data-id="{# $value.id #}"><span class="item_price" >{# $value.price #} <i> </i> </span></div>
-							<div class="off">
-								<label>{# $value.discount #} % </label>
-								<p>{# $value.fullname #}</p>
+		<div class="container">
+			<div class="wmuSlider example1">
+				<div class="wmuSliderWrapper">
+					{#foreach from=$discountarray item=$value#}
+					<article style="position: absolute; width: 100%; opacity: 0;">
+						<div class="banner-wrap">
+
+							<div class="banner-top">
+								<a href="single/product/{#$value.id#}">
+									<div class="banner-top-in">
+										<img src="views/images/products/{#$value.foto[0]#}" class="img-responsive"
+											alt="">
+									</div>
+								</a>
+								<div class="cart-at grid_1 simpleCart_shelfItem">
+									<div class="item_add" data-id="{#$value.id#}"><span class="item_price">
+										{#$value.price#} <i> </i> </span></div>
+									<div class="off">
+										<label>{#$value.discount#} % </label>
+										<p>{#$value.fullname#}</p>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+
 							</div>
-						</div>
-						<div class="clearfix"> </div>
-						
-						</div>
-						
-						 
-						<!--  <div class="banner-top banner-bottom -->
-						
-						<div class="banner-top">
-						<a href="single/product/{# $value.id #}">
-						<div class="banner-top-in">
-							<img src="views/images/products/{# $value.foto[1] #}" class="img-responsive" alt="">
-						</div></a>
-						<div class="cart-at grid_1 simpleCart_shelfItem">
-								<div class="item_add" data-id="{# $value.id #}"><span class="item_price" >{# $value.price #} <i> </i> </span></div>
-							<div class="off">
-								<label>{# $value.discount #} %</label>
-								<p>{# $value.fullname #}</p>
+
+
+							<!--  <div class="banner-top banner-bottom -->
+
+							<div class="banner-top">
+								<a href="single/product/{#$value.id#}">
+									<div class="banner-top-in">
+										<img src="views/images/products/{#$value.foto[1]#}" class="img-responsive"
+											alt="">
+									</div>
+								</a>
+								<div class="cart-at grid_1 simpleCart_shelfItem">
+									<div class="item_add" data-id="{#$value.id#}"><span class="item_price">
+										{#$value.price#} <i> </i> </span></div>
+									<div class="off">
+										<label>{#$value.discount#} %</label>
+										<p>{#$value.fullname#}</p>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+
 							</div>
+
+
+
+							<div class="clearfix"> </div>
+
 						</div>
-						<div class="clearfix"> </div>
-						
-						</div>
-						
-						
-						
-				   		 <div class="clearfix"> </div>
-						
-				   	 </div>
-			</article>
-                               {# /foreach #}
+					</article>
+					{#/foreach#}
+				</div>
+
+				<ul class="wmuSliderPagination">
+					<li><a href="#" class="">0</a></li>
+					<li><a href="#" class="">1</a></li>
+					<li><a href="#" class="wmuActive">2</a></li>
+				</ul>
 			</div>
-                      
-			 <ul class="wmuSliderPagination">
-                	<li><a href="#" class="">0</a></li>
-                	<li><a href="#" class="">1</a></li>
-                	<li><a href="#" class="wmuActive">2</a></li>
-                </ul>
-		</div>
-		<!---->
-		  <script src="views/js/jquery.wmuSlider.js"></script> 
-			  <script>
-       			$('.example1').wmuSlider({
-					 pagination : true,
-					 nav : false,
-				});         
-   		     </script> 	
-		
-		</div>   
-	</div>
-<div class="content">
-	<div class="container">
-		<div class="content-top">
-		<h2 class="new">Новые товары</h2>
-		<div class="pink">
-			<!-- requried-jsfiles-for owl -->
-		<link href="views/css/owl.carousel.css" rel="stylesheet">
-		<script src="views/js/owl.carousel.js"></script>
+			<!---->
+			<script src="views/js/jquery.wmuSlider.js"></script>
 			<script>
-				$(document).ready(function() {
-					$("#owl-demo").owlCarousel({
-						items : 3,
-						lazyLoad : true,
-						autoPlay : false,
-						pagination : true,
-					});
+				$('.example1').wmuSlider({
+					pagination: true,
+					nav: false,
 				});
 			</script>
-		<!-- //requried-jsfiles-for owl -->
-                 
-			<div id="owl-demo" class="owl-carousel text-center">
-                           {# foreach from=$newarray item=$value #} 
-			<div class="item">
-                            
-				<div class=" box-in">
-                                   
-			<div class=" grid_box">		
-                             
-							 <a href="single/product/{# $value.id #}" > <img src="views/images/products/{# $value.foto[0] #}" class="img-responsive" alt="">
-							 	<div class="zoom-icon">
-							 		
-									<ul class="in-by">
-										<li><h5>sizes:</h5></li>  
-                                                                             
-                                                                               
-                                                                                  {# foreach from=$value.size item=$size #}
-                                                                                 
-										<li><span> {# $value.size[0] #}</span></li>
-                                                                                
-										{# /foreach #}
-									</ul>
-					
-					
-						<ul class="in-by-color">
-							<li><h5>colors:</h5></li>                   
-                                                                                
-                                                                                  {# foreach from=$value.color item=$color #}
-                                                                                
-                                                      <span class=" item_price" >  <i> {# $value.color #}</i> </span>
-                                                     {# /foreach #}
-							
-						</ul>
-					
-						</div> </a> 
-                               
-		           </div>
-					<!---->
-						<div class="grid_1 simpleCart_shelfItem">
-							<a href="#" class="cup item_add" data-id="{# $value.id #}"><span class=" item_price" > {# $value.price #} <i> </i> </span></a>					
-						</div>
-					<!---->
-                                     
+
+		</div>
+	</div>
+	<div class="content">
+		<div class="container">
+			<div class="content-top">
+				<h2 class="new">Новые товары</h2>
+				<div class="pink">
+					<!-- requried-jsfiles-for owl -->
+					<link href="views/css/owl.carousel.css" rel="stylesheet">
+					<script src="views/js/owl.carousel.js"></script>
+					<script>
+						$(document).ready(function () {
+							$("#owl-demo").owlCarousel({
+								items: 4,
+								lazyLoad: true,
+								autoPlay: true,
+								pagination: true,
+							});
+						});
+					</script>
+					<!-- //requried-jsfiles-for owl -->
+
+					<div id="owl-demo" class="owl-carousel text-center">
+						{#foreach from=$newarray item=$value#}
+							<div class="item">
+								<div class=" box-in">
+									<div class=" grid_box">
+										<a href="single/product/{#$value.id#}"> <img
+												src="views/images/products/{#$value.foto[0]#}" class="img-responsive"
+												alt="">
+											<div class="zoom-icon">
+												<ul class="in-by">
+													<li>
+														<h5>sizes:</h5>
+													</li>
+													{#foreach from=$value.size item=$size#}
+														<li><span> {#$value.size[0]#}</span></li>
+													{#/foreach#}
+												</ul>
+												<ul class="in-by-color">
+													<li>
+														<h5>colors:</h5>
+													</li>
+													{#foreach from=$value.color item=$color#}
+														<span class=" item_price"> <i> {#$value.color#}</i> </span>
+													{#/foreach#}
+
+												</ul>
+
+											</div>
+										</a>
+
+									</div>
+									<div class="grid_1 simpleCart_shelfItem">
+										<a href="#" class="cup item_add" data-id="{#$value.id#}"><span
+												class=" item_price"> {#$value.price#} <i> </i> </span></a>
+									</div>
+								</div>
+
+							</div>
+						{#/foreach#}
+
+						<div class="clearfix"> </div>
+
+					</div>
+
 				</div>
-                             
+
 			</div>
-                            
 
-			
-			
-{# /foreach #}
-			
+			<!---->
+			<div class="content-middle">
+				<h2 class="middle">Товары дня</h2>
 
+				<div class="col-best">
+					{#foreach from=$bestarray item=$value#}
+						<div class="col-md-4">
+							<a href="single/product/{#$value.id#}">
+								<div class="col-in">
+									<div class="col-in-left">
+										<img src="views/images/products/{#$value.foto[0]#}" class="img-responsive" alt="">
+									</div>
+							</a>
+							<div class="col-in-right grid_1 simpleCart_shelfItem">
+								<h5>{#$value.name#}</h5>
+								<ul class="star">
+									<li><i> </i> </li>
+									<li><i> </i> </li>
+									<li><i> </i> </li>
+									<li><i> </i> </li>
+									<li><i> </i> </li>
+								</ul>
+								<a href="#" class="item_add" data-id="{#$value.id#}"><span class="white item_price">
+									{#$value.price#} <i> </i> </span></a>
+							</div>
+							<div class="clearfix"> </div>
 
+						</div>
+				</div>
+				{#/foreach#}
 
 				<div class="clearfix"> </div>
-                                 
+
 			</div>
-			 
+
 		</div>
-		
-		 </div>
-	
 		<!---->
-	<div class="content-middle">
-		<h2 class="middle">Товары дня</h2>
-              
-		<div class="col-best">
-			 {# foreach from=$bestarray item=$value #}  
-			<div class="col-md-4">
-                            
-				<a href="single/product/{# $value.id #}"><div class="col-in">
-					<div class="col-in-left">
-						<img src="views/images/products/{# $value.foto[0] #}" class="img-responsive" alt="">
-					</div>
-					</a>
-					<div class="col-in-right grid_1 simpleCart_shelfItem">
-						<h5>{# $value.name #}</h5>
-						<ul class="star">
-							<li><i> </i>  </li>
-							<li><i> </i>  </li>
-							<li><i> </i>  </li>
-							<li><i> </i>  </li>
-                                                        <li><i> </i>  </li>
-						</ul>
-						<!---->
-						<a href="#" class="item_add" data-id="{# $value.id #}"><span class="white item_price" >{# $value.price #} <i> </i> </span></a>
-						<!---->
-					</div>
-					<div class="clearfix"> </div>
-                                          
-				</div>
-                                    
-			</div>
-                    {# /foreach #}
-			
-			<div class="clearfix"> </div>
-                          
-		</div>
-              
-	</div>
-	<!---->
-		
-			<div class="content-bottom">
-				<div class="col-md-8 latter">
-					<h6>NEWSLETTER</h6>
-					<p>sign up now to our newsletter discount! to get the Welcome discount</p>
-					
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-4 latter-right">
-					
-						<form>
-						<div class="join">
-							<input type="text" value="your email here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'your email here';}">
-							<i> </i>
-						</div>
-							<input type="submit" value="join us">
-						</form>
-						
-				</div>
+
+		<div class="content-bottom">
+			<div class="col-md-8 latter">
+				<h6>NEWSLETTER</h6>
+				<p>sign up now to our newsletter discount! to get the Welcome discount</p>
+
 				<div class="clearfix"> </div>
 			</div>
+			<div class="col-md-4 latter-right">
 
-	<!---->
-	<div class="bottom-content">
+				<form>
+					<div class="join">
+						<input type="text" value="your email here" onfocus="this.value = '';"
+							onblur="if (this.value == '') {this.value = 'your email here';}">
+						<i> </i>
+					</div>
+					<input type="submit" value="join us">
+				</form>
+
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="bottom-content">
 	
 			<div class="col-md-4">
 				<img src="views/images/ad1.png" class="img-responsive" alt="">
@@ -241,8 +231,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	
 	</div>
-</div>
-{# include file="footer.tpl" #}
+
+	</div>
+	</div>
+	{#include file="footer.tpl"#}
 
 </body>
+
 </html>
