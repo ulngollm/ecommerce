@@ -29,14 +29,9 @@ return array(
     'cart/clear' => 'cart/clear',
     'cart/info' => 'cart/info',
 
-    // remove after 1 lab
-    // 'products' => 'site/products',
+    
     'checkout' => 'cart/checkout',
-    // 'decor' => 'site/decor',
-    // 'health' => 'site/health',
-    // 'mobile' => 'site/mobile',
-    // 'single' => 'site/single',
-    //
+    
     'error' => 'site/error',
     'contact' => 'site/contact',
 

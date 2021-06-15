@@ -42,7 +42,7 @@ class Index
 
         foreach ($fotoList as $value) {
 
-            if ($productList[$value['products']]['foto'] == NULL) {
+            if (!isset($productList[$value['products']]['foto'])) {
                 $productList[$value['products']]['foto'] = array();
             }
             if (count($productList[$value['products']]['foto']) < $kolfoto) {
