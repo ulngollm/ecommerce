@@ -28,8 +28,6 @@ return array(
     'cart/remove/([0-9]+)' => 'cart/remove/$1',
     'cart/clear' => 'cart/clear',
     'cart/info' => 'cart/info',
-
-    
     'checkout' => 'cart/checkout',
     
     'error' => 'site/error',

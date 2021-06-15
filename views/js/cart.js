@@ -2,19 +2,19 @@
 
       $(".item_add").click(function () {
           var id = $(this).attr("data-id");
-          $.post("/cart/add/" + id, {}, function (data) {
+          $.post("/cart/add/" + id, function (data) {
               console.log(data);
               var result = JSON.parse(data);
               $(".simpleCart_total").html(result.sum + " &#8381;");
               $(".simpleCart_quantity").html("кол-во: " + result.count);
 
           });
-          return false;
+          return false;//аналог preventDefault(), отменяет переход по ссылке  
       });
 
 
       $(".simpleCart_empty").click(function () {
-          $.post("/cart/clear", {}, function (data) {
+          $.post("/cart/clear", function (data) {
               console.log(data);
               var result = JSON.parse(data);
               $(".simpleCart_total").html(result.sum.toString() + " &#8381;");
@@ -29,7 +29,7 @@
       $('.myclose').click(function () {
           var id = $(this).attr("data-id");
           var obj = this;
-          $.post("/cart/remove/" + id, {}, function (data) {
+          $.post("/cart/remove/" + id, function (data) {
               console.log(data);
               var result = JSON.parse(data);
               $(".simpleCart_total").html(result.sum + " &#8381;");
@@ -40,7 +40,7 @@
           });
       });
 
-      $.post("/cart/info", {}, function (data) {
+      $.post("/cart/info", function (data) {
         console.log(data);
           const result = JSON.parse(data);
           $(".simpleCart_total").html(result.sum + " &#8381;");
