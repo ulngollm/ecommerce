@@ -1,30 +1,22 @@
 <?php
 
-class Category {
-   public static function getProductOfCategory($idcat,$page,&$kolrows) {
+class Category
+{
+  public static function getProductOfCategory($idcat, $page, &$kolrows)
+  {
+
     $myDB = new SafeMySQL();
-    
-    $myselect = "SELECT SQL_CALC_FOUND_ROWS * FROM products WHERE category=$idcat ORDER BY name LIMIT ?i, ?i"; 
-
-    $startindex = ($page-1)*PER_PAGE;
-  
-    $allarray = $myDB->getAll($myselect, $startindex, PER_PAGE);
-    
-       //var_dump($allarray); 
+    $query = "SELECT SQL_CALC_FOUND_ROWS * FROM products WHERE category=$idcat ORDER BY name LIMIT ?i, ?i";
+    $paginationOffset = PER_PAGE * ($page - 1);
+    $categoryProducts = $myDB->getAll($query, $paginationOffset, PER_PAGE);
     $kolrows = $myDB->getOne("SELECT FOUND_ROWS()");
-  //  var_dump($kolrows);
-    $resultarray = array();
-    
-    $indstr = '';
-    if($kolrows!=0) {
-        $indstr = Index::getListId($allarray, $resultarray);
-        Index::getArrayFoto($indstr, 1, $resultarray);
 
+    $productList = array();
+    if ($kolrows != 0) {
+      $idEnum = Index::getListId($categoryProducts, $productList);
+      Index::getArrayFoto($idEnum, 1, $productList);
     }
-    
-   //   var_dump($_SESSION);
-       
-    return $resultarray;
-   
-} 
+
+    return $productList;
+  }
 }

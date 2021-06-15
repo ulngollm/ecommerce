@@ -7,61 +7,57 @@ class Index
     {
         $myDB = new SafeMySQL();
 
-        $myselect =
+        $query =
             "SELECT id, fullname, price, discount 
             FROM products 
             WHERE discount!=0 ORDER BY name";
 
 
-        $allarray = $myDB->getAll($myselect);
-        $resultarray = array();
+        $result = $myDB->getAll($query);
 
-        $indstr = self::getListId($allarray, $resultarray);
-
-        self::getArrayFoto($indstr, 2, $resultarray);
-
-        return $resultarray;
+        $productList = array();
+        $idEnum = self::getListId($result, $productList);
+        self::getArrayFoto($idEnum, 2, $productList);
+        return $productList;
     }
 
-    public static function getListId(&$arr, &$resarr)
+    public static function getListId(array $dbResult, array &$productList)
     {
-
-        $indstr = "";
-        foreach ($arr as $value) {
-            $indstr = $indstr . $value['id'] . ",";
-            $resarr[$value['id']] = $value;
-        }
-        print(PHP_EOL);
-        $indstr = substr($indstr, 0, -1);
-        return $indstr;
+        
+        $idList = array_column($dbResult, 'id');
+        $idEnum = implode(",", $idList);
+        
+        $productList = array_combine($idList, $dbResult);//переиндексация массива
+        return $idEnum;//строка из списков id, подготовленная для sql запроса
     }
 
-    public static function getArrayFoto($indstr, $kolfoto, &$resarr)
+
+    public static function getArrayFoto(string $idEnum, $kolfoto, array &$productList)
     {
         $myDB = new SafeMySQL();
 
+        
+        $query = "SELECT products, path, colorproduct FROM fotoproducts WHERE products IN ($idEnum) ORDER BY products, id";
+        $fotoList = $myDB->getAll($query);
 
-        $myselectfoto = "SELECT products, path, colorproduct FROM fotoproducts WHERE products IN ($indstr) ORDER BY products, id";
-        $allarrayfoto = $myDB->getAll($myselectfoto);
+        foreach ($fotoList as $value) {
 
-        foreach ($allarrayfoto as $value) {
-
-            if ($resarr[$value['products']]['foto'] == NULL) {
-                $resarr[$value['products']]['foto'] = array();
+            if ($productList[$value['products']]['foto'] == NULL) {
+                $productList[$value['products']]['foto'] = array();
             }
-            if (count($resarr[$value['products']]['foto']) < $kolfoto) {
-                $resarr[$value['products']]['foto'][] = $value['path'];
+            if (count($productList[$value['products']]['foto']) < $kolfoto) {
+                $productList[$value['products']]['foto'][] = $value['path'];
             }
         }
 
-        foreach ($resarr as $i => $value) {
-            $realfoto = count($resarr[$i]['foto']);
+        foreach ($productList as $key => $value) {
+            $realfoto = count($productList[$key]['foto']);
 
             if ($realfoto == 0) {
                 //сюда добавить массив из колфото пустых фотозаглушек
             } elseif ($realfoto < $kolfoto) {
                 for ($k = $realfoto; $k < $kolfoto; $k++) {
-                    $resarr[$i]['foto'][] = $resarr[$i]['foto'][0];
+                    $productList[$key]['foto'][] = $productList[$key]['foto'][0];
                 }
             }
         }
@@ -72,41 +68,35 @@ class Index
     public static function getNewArrivals()
     {
         $myDB = new SafeMySQL();
+        $query = "SELECT id, price, fullname FROM products WHERE isnew=1 ORDER BY id";
+        $result = $myDB->getAll($query);
+        
+        $productList = array();
+        $idEnum = self::getListId($result, $productList);
+        self::getColorAndSize($idEnum, $productList);
+        self::getArrayFoto($idEnum, 2, $productList);
 
-        $myselect = "SELECT id, price, fullname FROM products WHERE isnew=1 ORDER BY id";
-
-
-        $allarray = $myDB->getAll($myselect);
-
-        $resultarray = array();
-
-        $indstr = self::getListId($allarray, $resultarray);
-
-
-        self::getColorAndSize($indstr, $resultarray);
-        self::getArrayFoto($indstr, 2, $resultarray);
-
-        return $resultarray;
+        return $productList;
     }
 
 
 
-    public static function getColorAndSize($indstr, &$resultarray)
+    public static function getColorAndSize($idEnum, &$productList)
     {
         $myDB = new SafeMySQL();
 
-        $sql = "SELECT colorproducts.product, colors.name FROM colorproducts JOIN colors WHERE colors.id = colorproducts.color AND product IN ($indstr) ORDER BY  product";
+        $sql = "SELECT colorproducts.product, colors.name FROM colorproducts JOIN colors WHERE colors.id = colorproducts.color AND product IN ($idEnum) ORDER BY  product";
         $colorarray = $myDB->getAll($sql);
 
-        $sqlsize = "SELECT productsize.product, sizes.name FROM productsize JOIN sizes WHERE sizes.id = productsize.size AND product IN ($indstr) ORDER BY  product";
+        $sqlsize = "SELECT productsize.product, sizes.name FROM productsize JOIN sizes WHERE sizes.id = productsize.size AND product IN ($idEnum) ORDER BY  product";
         $sizearray = $myDB->getAll($sqlsize);
 
         foreach ($colorarray as $key => $value) {
-            $resultarray[$value["product"]]['color'] = $value['name'];
+            $productList[$value["product"]]['color'] = $value['name'];
         }
 
         foreach ($sizearray as $key => $value) {
-            $resultarray[$value["product"]]['size'] = $value['name'];
+            $productList[$value["product"]]['size'] = $value['name'];
         }
     }
 
@@ -115,47 +105,42 @@ class Index
     {
         $myDB = new SafeMySQL();
 
-        $myselect = "SELECT id, price, name FROM products WHERE isbest=1 ORDER BY name";
+        $query = "SELECT id, price, name FROM products WHERE isbest=1 ORDER BY name";
 
-        $allarray = $myDB->getAll($myselect);
-        $resultarray = array();
+        $result = $myDB->getAll($query);
+        $productList = array();
 
-        $indstr = self::getListId($allarray, $resultarray);
-        self::getArrayFoto($indstr, 2, $resultarray);
+        $idEnum = self::getListId($result, $productList);
+        self::getArrayFoto($idEnum, 2, $productList);
 
-        // var_dump($resultarray);
-        return $resultarray;
+        // var_dump($productList);
+        return $productList;
     }
 
     public static function getProductOfCategory($categorynumb)
     {
         $myDB = new SafeMySQL();
 
-        $myselect = "SELECT id, price, name FROM products WHERE category=$categorynumb ORDER BY name LIMIT 0,3";
+        $query = "SELECT id, price, name FROM products WHERE category=$categorynumb ORDER BY name LIMIT 0,3";
 
-        $allarray = $myDB->getAll($myselect);
-        $resultarray = array();
+        $result = $myDB->getAll($query);
+        $productList = array();
 
-        $indstr = self::getListId($allarray, $resultarray);
-        self::getArrayFoto($indstr, 2, $resultarray);
+        $idEnum = self::getListId($result, $productList);
+        self::getArrayFoto($idEnum, 2, $productList);
 
-        // var_dump($resultarray);
-        return $resultarray;
+        // var_dump($productList);
+        return $productList;
     }
 
     public static function getBrendsOfCategory($brendsnumb)
     {
         $myDB = new SafeMySQL();
-
-        $myselect = "SELECT id, name FROM brends WHERE section=1 ORDER BY name LIMIT 0,3";
-
-        $allarray = $myDB->getAll($myselect);
-        $resultarray = array();
-
-        $indstr = self::getListId($allarray, $resultarray);
-
-
-        // var_dump($resultarray);
-        return $resultarray;
+        $query = "SELECT id, name FROM brends WHERE section=1 ORDER BY name LIMIT 0,3";
+        $result = $myDB->getAll($query);
+        $productList = array();
+        $idEnum = self::getListId($result, $productList);
+        // var_dump($productList);
+        return $productList;
     }
 }

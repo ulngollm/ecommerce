@@ -1,68 +1,69 @@
 <?php
 
-class Single {
-    
-    private static function getArrayFoto($id, &$single) {
-        
+class Single
+{
+
+    private static function getArrayFoto($id, &$single)
+    {
+
         $myDB = new SafeMySQL();
-        $myselectfoto = "SELECT products, path FROM fotoproducts WHERE products=?i ORDER BY id";
-        $allarrayfoto = $myDB->getAll($myselectfoto, $id);
-        
-        foreach ($allarrayfoto as $value) {
+        $queryfoto = "SELECT products, path FROM fotoproducts WHERE products=?i ORDER BY id";
+        $result = $myDB->getAll($queryfoto, $id);
+
+        foreach ($result as $value) {
             $single['foto'][] = $value['path'];
         }
     }
-    
-    private static function getArraySize($id, &$single) {
-        
+
+    private static function getArraySize($id, &$single)
+    {
+
         $myDB = new SafeMySQL();
-        $myselectsize = "SELECT id, name FROM sizes WHERE id IN (SELECT size FROM productsize WHERE product = ?i)";
-        $single['size'] = $myDB->getAll($myselectsize, $id);
-        
-       
+        $querysize = "SELECT id, name FROM sizes WHERE id IN (SELECT size FROM productsize WHERE product = ?i)";
+        $single['size'] = $myDB->getAll($querysize, $id);
     }
-    
-    private static function getArrayColor($id, &$single) {
-        
+
+    private static function getArrayColor($id, &$single)
+    {
+
         $myDB = new SafeMySQL();
 
-         $myselectcolor = "SELECT id, name, code FROM colors WHERE id IN (SELECT color FROM colorproducts WHERE product = ?i)";
-        $single['color'] = $myDB->getAll($myselectcolor, $id);
-      //  var_dump($single);
-        
+        $querycolor = "SELECT id, name, code FROM colors WHERE id IN (SELECT color FROM colorproducts WHERE product = ?i)";
+        $single['color'] = $myDB->getAll($querycolor, $id);
+
     }
-    
-     private static function getAboutProduct($id, &$single) {
-        
+
+    private static function getAboutProduct($id, &$single)
+    {
+
         $myDB = new SafeMySQL();
 
-         $myselectprod = "SELECT id, name, fullname, price, issize, smalldiscription FROM products WHERE id=?i ORDER BY id";
-        $single['about'] = $myDB->getAll($myselectprod, $id);
-    //  var_dump($single['about']);
-        
+        $query = "SELECT id, name, fullname, price, issize, smalldiscription FROM products WHERE id=?i ORDER BY id";
+        $single['about'] = $myDB->getAll($query, $id);
+
     }
-   
-   
-        public static function getProduct($id) {
-        
+
+
+    public static function getProduct($id)
+    {
+
         $myDB = new SafeMySQL();
-        
-        $myselect = "SELECT * FROM products WHERE  id = $id ORDER BY id ";
-      //  $myselect = "SELECT * FROM products WHERE id=$id";
-        
-        $single = $myDB->getRow($myselect);
-        
+
+        $query = "SELECT * FROM products WHERE  id = $id ORDER BY id ";
+        //  $query = "SELECT * FROM products WHERE id=$id";
+
+        $single = $myDB->getRow($query);
 
         self::getArrayFoto($id, $single);
         self::getArraySize($id, $single);
         self::getArrayColor($id, $single);
         self::getAboutProduct($id, $single);
-        
-$single['categoryproduct'] = Index::getProductOfCategory($single['category']);
 
- $single['brends'] = Index::getBrendsOfCategory($single['category']);
+        $single['categoryproduct'] = Index::getProductOfCategory($single['category']);
+
+        $single['brends'] = Index::getBrendsOfCategory($single['category']);
 
 
-         return $single;
+        return $single;
     }
 }
