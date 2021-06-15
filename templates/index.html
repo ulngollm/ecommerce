@@ -17,7 +17,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="wmuSlider example1">
 				<div class="wmuSliderWrapper">
 					{#foreach from=$discountarray item=$value#}
-					<article style="position: absolute; width: 100%; opacity: 0;">
+					<article>
 						<div class="banner-wrap">
 
 							<div class="banner-top">
@@ -29,9 +29,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</a>
 								<div class="cart-at grid_1 simpleCart_shelfItem">
 									<div class="item_add" data-id="{#$value.id#}"><span class="item_price">
-										{#$value.price#} <i> </i> </span></div>
+										{#$value.price#} &#8381;<i> </i> </span></div>
 									<div class="off">
-										<label>{#$value.discount#} % </label>
+										<label>-{#round($value.discount)#}% sale! </label>
 										<p>{#$value.fullname#}</p>
 									</div>
 								</div>
@@ -39,21 +39,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 							</div>
 
-
-							<!--  <div class="banner-top banner-bottom -->
-
-							<div class="banner-top">
+							<div class="banner-top banner-bottom">
 								<a href="single/product/{#$value.id#}">
-									<div class="banner-top-in">
+									<div class="banner-top-in at">
 										<img src="views/images/products/{#$value.foto[1]#}" class="img-responsive"
 											alt="">
 									</div>
 								</a>
 								<div class="cart-at grid_1 simpleCart_shelfItem">
 									<div class="item_add" data-id="{#$value.id#}"><span class="item_price">
-										{#$value.price#} <i> </i> </span></div>
+										{#$value.price#} &#8381;<i> </i> </span></div>
 									<div class="off">
-										<label>{#$value.discount#} %</label>
+										<label>-{#round($value.discount)#} % sale!</label>
 										<p>{#$value.fullname#}</p>
 									</div>
 								</div>
@@ -140,7 +137,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									</div>
 									<div class="grid_1 simpleCart_shelfItem">
 										<a href="#" class="cup item_add" data-id="{#$value.id#}"><span
-												class=" item_price"> {#$value.price#} <i> </i> </span></a>
+												class=" item_price"> {#$value.price#} &#8381;<i> </i> </span></a>
 									</div>
 								</div>
 
@@ -178,7 +175,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<li><i> </i> </li>
 								</ul>
 								<a href="#" class="item_add" data-id="{#$value.id#}"><span class="white item_price">
-									{#$value.price#} <i> </i> </span></a>
+									{#$value.price#} &#8381; <i> </i> </span></a>
 							</div>
 							<div class="clearfix"> </div>
 

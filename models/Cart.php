@@ -18,6 +18,9 @@ class Cart
         $myDB = new SafeMySQL();
         $query = "SELECT price FROM products WHERE id = $id";
         $productPrice = $myDB->getOne($query);
+
+        
+        $_SESSION['cartSum']??= 0;
         $_SESSION['cartSum'] += $productPrice;
 
         if (isset($_SESSION['products'][$id])) {

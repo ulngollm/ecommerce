@@ -411,12 +411,19 @@ ul.wmuSliderPagination {
 	padding: 3em 0;
 }
 
+.banner-wrap {
+	height: 280px;
+	overflow: hidden;
+}
+
 .banner-top {
 	float: left;
 	width: 35%;
 	background: #fff;
 	margin-right: 3%;
 	border-radius: 5px;
+	max-height: 100%;
+
 }
 
 .banner-bottom {
@@ -445,6 +452,7 @@ ul.wmuSliderPagination {
 	font-size: 1.2em;
 	text-decoration: none;
 	cursor: pointer;
+	white-space: nowrap;
 }
 
 .cart-at span i {
@@ -670,7 +678,8 @@ h2.middle:after {
 .col-in-left {
 	float: left;
 }
-.col-in-left  img{
+
+.col-in-left img {
 	max-width: 100px;
 }
 
@@ -729,9 +738,11 @@ ul.star {
 .col-best {
 	padding: 3em 0;
 }
-.col-best .col-md-4{
+
+.col-best .col-md-4 {
 	margin-bottom: 30px;
 }
+
 .latter {
 	margin-top: 4px;
 }

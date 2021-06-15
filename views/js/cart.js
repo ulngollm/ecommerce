@@ -5,7 +5,7 @@
           $.post("/cart/add/" + id, {}, function (data) {
               console.log(data);
               var result = JSON.parse(data);
-              $(".simpleCart_total").html(result.sum + " руб");
+              $(".simpleCart_total").html(result.sum + " &#8381;");
               $(".simpleCart_quantity").html("кол-во: " + result.count);
 
           });
@@ -17,7 +17,7 @@
           $.post("/cart/clear", {}, function (data) {
               console.log(data);
               var result = JSON.parse(data);
-              $(".simpleCart_total").html(result.sum + " руб");
+              $(".simpleCart_total").html(result.sum.toString() + " &#8381;");
               $(".simpleCart_quantity").html("кол-во: " + result.count);
               $('.cart-header').fadeOut('slow', function () {
                   $('.cart-header').remove();
@@ -32,7 +32,7 @@
           $.post("/cart/remove/" + id, {}, function (data) {
               console.log(data);
               var result = JSON.parse(data);
-              $(".simpleCart_total").html(result.sum + " руб");
+              $(".simpleCart_total").html(result.sum + " &#8381;");
               $(".simpleCart_quantity").html("кол-во: " + result.count);
               $(obj).closest('.cart-header').fadeOut('slow', function () {
                   $(obj).closest('.cart-header').remove();
@@ -43,7 +43,7 @@
       $.post("/cart/info", {}, function (data) {
         console.log(data);
           const result = JSON.parse(data);
-          $(".simpleCart_total").html(result.sum + " руб");
+          $(".simpleCart_total").html(result.sum + " &#8381;");
           $(".simpleCart_quantity").html("кол-во: " + result.count);
       });
   });
