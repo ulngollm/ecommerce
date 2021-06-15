@@ -15,7 +15,7 @@ class AdminView {
        $smarty = new Smarty();
        $smarty->left_delimiter = '{#';
        $smarty->right_delimiter = '#}';
-       $smarty->display("admin\/ectionadmin.html");
+       $smarty->display("admin/sectionadmin.html");
     }
     
      public static function CategoriesForm() {

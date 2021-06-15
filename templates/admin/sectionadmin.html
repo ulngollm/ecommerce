@@ -1,188 +1,200 @@
-<html><head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type="text/javascript" src="/views/js/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="/views/js/bootstrap.min.js"></script>
-        <link href="/views/admin/css/style.css" rel="stylesheet" type="text/css">
-        <link href="/views/admin/css/checkbox.css" rel='stylesheet' type="text/css">
-        <script type="text/javascript" src="/views/js/datajs.js"></script>
-        <title>Редактирование секций</title>  
-        <script>
-            
-            function getSection(obj)
-            {
-                status = obj.status===1 ? "checked" : "";
-                return $('<div class="container" data-id="'+obj.id+'">'+
-                    '<div class="row">'+
-                    '<div class="col-md-12">'+
-                     '<form class="form-horizontal" role="form">'+
-                        '<div class="form-group">'+
-                            '<div class="col-sm-2">'+
-                               '<input type="text" class="form-control" placeholder="id" disabled="" value="'+obj.id+'">'+
-                                '</div>'+
-                                '<div class="col-sm-6">'+
-                                    '<input type="text" class="form-control" placeholder="Название секции" value="'+obj.name+'">'+
-                                '</div>'+
-                                '<div class="col-sm-1">'+
-                                    '<input type="text" class="form-control" placeholder="Сортировка" value="'+obj.sort+'">'+
-                                '</div>'+
-                                '<div class="col-sm-1">'+
-                                    '<div class="material-switch">'+
-                                        '<input id="section'+obj.id+'" name="someSwitchOption001" type="checkbox" '+status+'>'+
-                                        '<label for="section'+obj.id+'" class="label-success"></label>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="col-sm-1">'+
-                                    '<a class="btn btn-block btn-success myredact">V</a>'+
-                                '</div>'+
-                                '<div class="col-sm-1">'+
-                                    '<a class="btn btn-block btn-danger mydelete">X</a>'+
-                                '</div>'+
-                            '</div></form></div></div></div>'
-                );
-            }
-            
-            $(document).ready(function (){            
-               $("#addsection").click(function() {
-                   maxIdSection++;
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="/views/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/views/js/bootstrap.min.js"></script>
+    <link href="/views/admin/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/views/admin/css/checkbox.css" rel='stylesheet' type="text/css">
+    <script type="text/javascript" src="/views/js/datajs.js"></script>
+    <title>Редактирование секций</title>
+    <script>
+
+        function getSection(obj) {
+            status = obj.status === 1 ? "checked" : "";
+            return $('<div class="container" data-id="' + obj.id + '">' +
+                '<div class="row">' +
+                '<div class="col-md-12">' +
+                '<form class="form-horizontal" role="form">' +
+                '<div class="form-group">' +
+                '<div class="col-sm-2">' +
+                '<input type="text" class="form-control" placeholder="id" disabled="" value="' + obj.id + '">' +
+                '</div>' +
+                '<div class="col-sm-6">' +
+                '<input type="text" class="form-control" placeholder="Название секции" value="' + obj.name + '">' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<input type="text" class="form-control" placeholder="Сортировка" value="' + obj.sort + '">' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<div class="material-switch">' +
+                '<input id="section' + obj.id + '" name="someSwitchOption001" type="checkbox" ' + status + '>' +
+                '<label for="section' + obj.id + '" class="label-success"></label>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<a class="btn btn-block btn-success myredact">V</a>' +
+                '</div>' +
+                '<div class="col-sm-1">' +
+                '<a class="btn btn-block btn-danger mydelete">X</a>' +
+                '</div>' +
+                '</div></form></div></div></div>'
+            );
+        }
+
+        $(document).ready(function () {
+            $("#addsection").click(function () {
+                maxIdSection++;
                 obj = new Section(maxIdSection,
-                        $("#sectionnewname").val(),
-                        parseInt($("#sectionnewsort").val()),
-                        $("#sectionnewstatus").is(":checked")
-                        );
-            
-                $.post("/admin/sectioncomand/addsection", {"obj": JSON.stringify(obj)}, function (data) {
-                    result = JSON.parse(data);
-                    console.log(result.result);
-                    if(result.result === "Ok") 
-                    {
-                        newId = result.id;
-                        obj = new Section(newId,
-                            $("#sectionnewname").val(),
-                            $("#sectionnewsort").val(),
-                            $("#sectionnewstatus").is(":checked")
-                        );
-                        datasection.push(obj);
-                        $("#listsection").append(getSection(obj));
-                    }
+                    $("#sectionnewname").val(),
+                    parseInt($("#sectionnewsort").val()),
+                    $("#sectionnewstatus").is(":checked")
+                );
+
+                $.post("/admin/sectioncomand/addsection", 
+                    { 
+                        "obj": JSON.stringify(obj) 
+                    }, 
+                    function (data) {
+                        result = JSON.parse(data);
+                        console.log(result.result);
+                        if (result.result === "Ok") {
+                            newId = result.id;
+                            obj = new Section(newId,
+                                $("#sectionnewname").val(),
+                                $("#sectionnewsort").val(),
+                                $("#sectionnewstatus").is(":checked")
+                            );
+                            datasection.push(obj);
+                            $("#listsection").append(getSection(obj));
+                        }
                 });
             });
-            
-                
-                
-               $("#listsection").click(function (e){
-                   if ($(e.target).hasClass("mydelete")) 
-                   {
-                      delcontainer = $(e.target).parents("div.container");
-                     
-                      id = parseInt(delcontainer.attr("data-id")); 
-                      $.post("/admin/sectioncomand/delsection",
-                            {"id": JSON.stringify(id)}, function (data) {
-                                
-                          if(data === "Ok")
-                          {
-                               for (index in datasection) 
-                               {                       
-                                    if (datasection[index].id === id) 
-                                    {                           
+
+
+
+            $("#listsection").click(function (e) {
+                if ($(e.target).hasClass("mydelete")) {
+                    delcontainer = $(e.target).parents("div.container");
+
+                    id = parseInt(delcontainer.attr("data-id"));
+                    $.post("/admin/sectioncomand/delsection",
+                        { "id": JSON.stringify(id) }, function (data) {
+
+                            if (data === "Ok") {
+                                for (index in datasection) {
+                                    if (datasection[index].id === id) {
                                         delete datasection[index];
                                     }
-                                }  
-                                delcontainer.fadeOut("slow",function (){
+                                }
+                                delcontainer.fadeOut("slow", function () {
                                     this.remove();
                                 });
-                          }
-                          ;
-                      });
-                   } else if ($(e.target).hasClass("myredact")) {
-                       redactcontainer = $(e.target).parents("div.container");
-                       id = parseInt(redactcontainer.attr("data-id"));
-                       obj = new Section(id,$("#name"+id).val(),parseInt($("#sort"+id).val()),$("status"+id).is(":checked"));
-                       $.post("/admin/sectioncomand/redact", {"id": JSON.stringify(id)}, function (data) {
-                           //console.log(data);
-                       });
-                   };
-                      
-               });
-               
-               $.post("/admin/sectioncomand/getsections", {}, function (data) {
-                  datasection = JSON.parse(data); 
-                   for (index in datasection)
-                       {
-                        obj = datasection[index];
-                        obj.status = parseInt(obj.status);
-                        $("#listsection").append(getSection(obj));                   
-                       }
-               })
-               
+                            }
+                            ;
+                        });
+                } else if ($(e.target).hasClass("myredact")) {
+                    redactcontainer = $(e.target).parents("div.container");
+                    id = parseInt(redactcontainer.attr("data-id"));
+                    obj = new Section(
+                        id, 
+                        $("#name" + id).val(), 
+                        parseInt($("#sort" + id).val()), 
+                        $("status" + id).is(":checked"));
+
+                    $.post("/admin/sectioncomand/redact", 
+                        { 
+                            "id": JSON.stringify(id) 
+                        }, 
+                        function (data) {
+                        //console.log(data);
+                    });
+                };
+
             });
-        </script>
-    </head>
-    <body>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="nav nav-pills">
-                            <li>
-                                <a href="/admin/colorandsize">Цвета и размеры</a>
-                            </li>
-                            <li class="active">
-                                <a href="/admin/section">Секции</a>
-                            </li>
-                            <li>
-                                <a href="/admin/brends">Бренды</a>
-                            </li>
-                            <li>
-                                <a href="/admin/category">Категории</a>
-                            </li>
-                            <li>
-                                <a href="/admin/products">Товары</a>
-                            </li>
-                        </ul>
-                    </div>
+
+            $.post("/admin/sectioncomand/getsections", {}, function (data) {
+                datasection = JSON.parse(data);
+                for (index in datasection) {
+                    obj = datasection[index];
+                    obj.status = parseInt(obj.status);
+                    $("#listsection").append(getSection(obj));
+                }
+            })
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills">
+                        <li>
+                            <a href="/admin/colorandsize">Цвета и размеры</a>
+                        </li>
+                        <li class="active">
+                            <a href="/admin/section">Секции</a>
+                        </li>
+                        <li>
+                            <a href="/admin/brends">Бренды</a>
+                        </li>
+                        <li>
+                            <a href="/admin/category">Категории</a>
+                        </li>
+                        <li>
+                            <a href="/admin/products">Товары</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="section" id="listsection">
-            
-        </div>   
-        <hr>
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" placeholder="id" disabled="">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input id="sectionnewname" type="text" class="form-control" placeholder="Название секции">
-                                </div>
-                                
-                                <div class="col-sm-1">
-                                    <input id="sectionnewsort" type="text" class="form-control" placeholder="Сортировка">
-                                </div>
-                                
-                                <div class="col-sm-1">
-                                    <div class="material-switch pull-right">
-                                        <input id="sectionnewstatus" name="someSwitchOption001" type="checkbox"/>
-                                        <label for="sectionnewstatus" class="label-success"></label>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a class="btn btn-block btn-success" id="addsection">V</a>
-                                </div>
-                                <div class="col-sm-1">
+    </div>
+    <div class="section" id="listsection">
 
+    </div>
+    <hr>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" placeholder="id" disabled="">
+                            </div>
+                            <div class="col-sm-6">
+                                <input id="sectionnewname" type="text" class="form-control"
+                                    placeholder="Название секции">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <input id="sectionnewsort" type="text" class="form-control" placeholder="Сортировка">
+                            </div>
+
+                            <div class="col-sm-1">
+                                <div class="material-switch pull-right">
+                                    <input id="sectionnewstatus" name="someSwitchOption001" type="checkbox" />
+                                    <label for="sectionnewstatus" class="label-success"></label>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-sm-1">
+                                <a class="btn btn-block btn-success" id="addsection">V</a>
+                            </div>
+                            <div class="col-sm-1">
+
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
 
-    </body></html>
+</body>
+
+</html>
